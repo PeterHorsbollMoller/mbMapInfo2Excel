@@ -1,0 +1,598 @@
+'*******************************************************************************
+'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'** 	Program:
+'** 	Modul:
+'**
+'*******************************************************************************
+
+'-------------------------------------
+Include "Library\MapBasic.def"
+Include "Library\Icons.def"
+Include "Library\Menu.def"
+'**default constants...
+Include "Library\Defaults.def"
+
+Define xProgram 		"MapInfo2Excel"
+Define xProgramMenu		"MapInfo2Excel"
+Define xVersion 		"1.0"
+Define xYear			"2013"
+Define xAddToMenuBar	FALSE
+
+Define FILE_INI			GetFolderPath$(FOLDER_MI_PREFERENCE) & xProgram & ".ini"
+Define FILE_DBG			ApplicationDirectory$() & xProgram & ".dbg"
+'Define FILE_DLL			ApplicationDirectory$() & xProgram & ".dll"
+Define FILE_PAD			GetFolderPath$(FOLDER_MI_PREFERENCE) & xProgram & ".btp"
+
+Define					WORKSHEET_INPUT_DATA	"InputData"
+Define					WORKSHEET_INPUT_MAPS	"Maps"
+
+Define CTRL_LST_TABLES		100
+Define CTRL_CHK_EXPORT_TITLES	200
+Define CTRL_TXT_OUTPUT_FILE	300
+
+'-------------------------------------
+Include "Library\ProgramInfo.def"
+Include "Library\DEBUGLib.def"
+Include "Library\DATETIMELib.def"
+Include "Library\EXCELLib.def"
+Include "Library\FILELib.def"
+Include "Library\MAPPERLib.def"
+Include "Library\ERRORLib.def"
+Include "Library\TABLELib.def"
+
+'-----------------------------------------------------------------------------------------
+Declare Sub Main
+Declare Sub EndProgram
+
+Declare Function MENUGetExcelTemplateFile() As String
+
+Declare Sub MENUExportTableToExcel
+Declare Sub MENUExportTable_OKButton
+
+Declare Sub MENUExportBrowserDataToExcel
+Declare Sub MENUExportBrowserData_OKButton
+
+Declare Sub MENUExport_SaveFileAs
+
+Declare Sub MENUExportTable(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+
+Declare Sub MENUExportMapWindowToExcel
+Declare Function MENUExportMapToExcelIsEnabled() As Logical
+
+Dim	marrTables() As String,
+	msLatestExcelFile As String,
+	mnNumMapExported As Integer,
+	mbExportTitles As Logical
+'**********************************************************************************************''
+'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'
+'**********************************************************************************************''
+Sub Main
+
+OnError GoTo ErrorOccured
+
+	'***Initializing ApplicationInfo
+	Call PRGISetApplicationName(xProgram)
+	Call PRGISetApplicationVersion(xVersion)
+	Call PRGISetApplicationCopyrightYear(xYear)
+	Call PRGISetApplicationDevelopedBy("Peter Horsbøll Møller")
+
+	'***Enabling Debug if file exists
+	Call DEBUGEnableByFile(FILE_DBG)
+
+	Create Menu xProgramMenu As
+		"Export table to MS Excel..."
+			HelpMsg ""
+			Calling MENUExportTableToExcel,
+		"Export current browser data to MS Excel..."
+			HelpMsg ""
+			Calling MENUExportBrowserDataToExcel,
+		"Export map window to MS Excel"
+			Calling MENUExportMapWindowToExcel,
+		"(-",
+		"End program"
+			Calling EndProgram,
+		"About..."
+			Calling PRGIAboutbox
+
+	If xAddToMenuBar Then
+		'Remove the Window menu and Help menu
+		Alter Menu Bar Remove ID 6, ID 7
+		'Add the custom menu, then the Window & Help menus
+		Alter Menu Bar Add xProgramMenu, ID 6, ID 7
+	Else
+		Alter Menu ID 4
+			Add "(-", xProgramMenu  As xProgramMenu
+	End If
+
+	Alter Menu ID M_SHORTCUT_MAPPER Add
+		"(-",
+		"Export map window to MS Excel"
+			Calling MENUExportMapWindowToExcel
+
+	Alter Menu ID M_SHORTCUT_BROWSER Add
+		"(-",
+		"Export current browser data to MS Excel..."
+			HelpMsg ""
+			Calling MENUExportBrowserDataToExcel
+
+	Alter Menu ID 47 Add
+		"Export current browser data to MS Excel..."
+			HelpMsg ""
+			Calling MENUExportBrowserDataToExcel
+
+	mbExportTitles	= TRUE
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "Main")
+	Call ERRShow()
+
+End Sub
+
+'****************************************
+'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'**   Ending MapBasic application
+'****************************************
+Sub EndProgram
+
+OnError GoTo ErrorOccured
+
+	End Program
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "EndProgram")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Function MENUGetExcelTemplateFile() As String
+
+OnError GoTo ErrorOccured
+
+	MENUGetExcelTemplateFile	= ApplicationDirectory$() & "Template.xlsm"
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUGetExcelTemplateFile")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportTableToExcel
+
+Dim	sXLSFile As String
+
+OnError GoTo ErrorOccured
+
+	Redim marrTables(0)
+	If TABGetListOfNames(TAB_USE_ALL_BUT_IMAGES, marrTables) = 0 Then
+		Note "Please open one or more native tables!"
+		Exit Sub
+	End If
+
+	sXLSFile	= DATEGetISODate(CurDate()) & " - " & DATEGetTimeAsHHMMSS(CurTime(), ".") & ".xlsm"
+	If msLatestExcelFile = "" Then
+		sXLSFile	= GetFolderPath$(FOLDER_MYDOCS) & sXLSFile
+	Else
+		sXLSFile	= PathToDirectory$(msLatestExcelFile) & sXLSFile
+	End If
+
+	Dialog
+		Title "Export table to MS Excel"
+
+		Control StaticText		Position 5,5	Width 200
+			Title "Select table to export"
+		Control Listbox		Position 5,15	Width 200		Height 100	ID CTRL_LST_TABLES
+			Title From Variable marrTables
+			Value 1
+
+		Control StaticText		Position 5,120	Width 200
+			Title "MS Excel output file"
+		Control EditText		Position 5,130	Width 190					ID CTRL_TXT_OUTPUT_FILE
+			Value sXLSFile
+
+		Control Button			Position 195,130		Height 12	Width 10
+			Title ".."
+			Calling MENUExport_SaveFileAs
+
+		Control Checkbox		Position 5,145	Width 80					ID CTRL_CHK_EXPORT_TITLES
+			Title "Export column titles"
+
+		Control OKButton		Position 120,145	Width 40
+			Title "Export"
+			Calling MENUExportTable_OKButton
+		Control CancelButton	Position 165,145	Width 40
+			Title "Close"
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportTableToExcel")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportTable_OKButton
+
+Dim	sNewFile, sTab As String
+
+OnError GoTo ErrorOccured
+
+	Dialog Preserve
+
+	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
+	sTab			= marrTables(ReadControlValue(CTRL_LST_TABLES))
+	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	Call MENUExportTable(sTab, mbExportTitles, sNewFile)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportTable_OKButton")
+	Call ERRShow()
+	Call EXCELDDECloseChannel(nChannel)
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportBrowserDataToExcel
+
+Dim	nBID As Integer,
+	sXLSFile As String
+
+OnError GoTo ErrorOccured
+
+	nBID = FrontWindow()
+	If nBID = 0 Then
+		Note "Please open a browser window before using this function!"
+		Exit Sub
+	End If
+	If WindowInfo(nBID, WIN_INFO_TYPE) <> WIN_BROWSER Then
+		Note "Please make a browser window the active window before using this function!"
+		Exit Sub
+	End If
+
+	sXLSFile	= DATEGetISODate(CurDate()) & " - " & DATEGetTimeAsHHMMSS(CurTime(), ".") & ".xlsm"
+	If msLatestExcelFile = "" Then
+		sXLSFile	= FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)) & sXLSFile
+	Else
+		sXLSFile	= PathToDirectory$(msLatestExcelFile) & sXLSFile
+	End If
+
+	Dialog
+		Title "Export browser data to MS Excel"
+
+		Control StaticText		Position 5,5	Width 200
+			Title "MS Excel output file"
+		Control EditText		Position 5,15	Width 190					ID CTRL_TXT_OUTPUT_FILE
+			Value sXLSFile
+
+		Control Button			Position 195,15		Height 12	Width 10
+			Title ".."
+			Calling MENUExport_SaveFileAs
+
+		Control Checkbox		Position 5,30	Width 80					ID CTRL_CHK_EXPORT_TITLES
+			Title "Export column titles"
+			Value mbExportTitles
+
+		Control OKButton		Position 120,30	Width 40
+			Title "Export"
+			Calling MENUExportBrowserData_OKButton
+		Control CancelButton	Position 165,30	Width 40
+			Title "Close"
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportTableToExcel")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportBrowserData_OKButton
+
+Dim	sNewFile, sTab As String
+
+OnError GoTo ErrorOccured
+
+	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
+	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	Create Query
+		From Window FrontWindow()
+		Into __dump__to__Excel
+
+	Call MENUExportTable("__dump__to__Excel", mbExportTitles, sNewFile)
+
+	Close Table "__dump__to__Excel"
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportBrowserData_OKButton")
+	Call ERRShow()
+	Call EXCELDDECloseChannel(nChannel)
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExport_SaveFileAs
+
+Dim	sFile As String
+
+OnError GoTo ErrorOccured
+
+	sFile	= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
+	sFile	= FileSaveAsDlg(PathToDirectory$(sFile), PathToFileName$(sFile), "XLSM", "Please enter the path and name for the new MS Excel file...")
+	If sFile = "" Then
+		Exit Sub
+	End If
+
+	Alter Control CTRL_TXT_OUTPUT_FILE	Value sFile
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExport_SaveFileAs")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportTable(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+
+Dim	sSheet, sCol, sValue As String,
+	aCol As Alias,
+	nChannel, nColInitial, nRowInital, nRow, nCol As Integer
+
+OnError GoTo ErrorOccured
+
+	Do While (EXCELIsFileOpen(sOutputFile) = TRUE)
+		If NOT Ask("The MS Excel file is currently open in MS Excel:"
+				& lf & sOutputFile
+				& lf
+				& lf & "Please close it to continue", "Continue", "Abort") Then
+			Exit Sub
+		End If
+	Loop
+
+	If NOT FileExists(MENUGetExcelTemplateFile()) Then
+		Note "The MS Excel template file doesn't exist:"
+			& lf & MENUGetExcelTemplateFile()
+		Exit Sub
+	End If
+
+	Do While (EXCELIsFileOpen(MENUGetExcelTemplateFile()) = TRUE)
+		If NOT Ask("The MS Excel template file is currently open in MS Excel:"
+				& lf & MENUGetExcelTemplateFile()
+				& lf
+				& lf & "Please close it to continue", "Continue", "Abort") Then
+			Exit Sub
+		End If
+	Loop
+
+	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile())
+	Call DEBUGPrint("   as " & sOutputFile)
+	Save File MENUGetExcelTemplateFile() As sOutputFile
+	If NOT EXCELOpenFile(sOutputFile) Then
+		Note "An error occured when trying to open the MS Excel file in MS Excel: " & sOutputFile
+		Exit Function
+	End If
+
+	sSheet		= WORKSHEET_INPUT_DATA
+	nColInitial	= 1
+	nRowInital	= 1
+
+	nChannel = EXCELDDEOpenChannel(sSheet)
+	If nChannel = 0 Then
+		Note "An error occurred while opening a DDE channel to MS Excel."
+			& lf
+			& lf & "Make sure your MS Excel template contains a worksheet called '" & WORKSHEET_INPUT_DATA & "'!"
+		Exit Sub
+	End If
+
+	If bExportTitles Then
+		For nCol = 1 To TableInfo(sTab, TAB_INFO_NCOLS)
+			Call EXCELDDEInsertValue(nChannel, Str$(nRowInital), Str$(nColInitial + nCol - 1), ColumnInfo(sTab, "COL" & nCol, COL_INFO_NAME))
+		Next
+
+		nRowInital	= nRowInital + 1
+	End If
+
+	Fetch First From sTab
+	Do Until EOT(sTab)
+
+		For nCol = 1 To TableInfo(sTab, TAB_INFO_NCOLS)
+			sCol	= ColumnInfo(sTab, "COL" + nCol, COL_INFO_NAME)
+			aCol = sTab & "." & sCol
+
+			sValue = ""
+
+			Do Case ColumnInfo(sTab, sCol, COL_INFO_TYPE)
+				Case COL_TYPE_CHAR
+					sValue = aCol
+				Case COL_TYPE_INTEGER, COL_TYPE_SMALLINT, COL_TYPE_LOGICAL	', COL_TYPE_LARGEINT
+					sValue = Str$(aCol)
+				Case COL_TYPE_FLOAT, COL_TYPE_DECIMAL
+					sValue = FormatNumber$(aCol)
+				Case COL_TYPE_DATE
+					If aCol Then
+						sValue = FormatDate$(aCol)
+					End If
+				Case COL_TYPE_TIME
+					If aCol Then
+						sValue = FormatTime$(acol, "HH:mm:ss")
+					End If
+				Case COL_TYPE_DATETIME
+					If aCol Then
+						sValue = FormatDate$(aCol) & " " & FormatTime$(GetTime(acol), "HH:mm:ss")
+					End If
+			End Case
+
+			Call EXCELDDEInsertValue(nChannel, Str$(nRowInital + nRow), Str$(nColInitial + nCol - 1), sValue)
+		Next
+
+		nRow = nRow + 1
+		Fetch Next From sTab
+	Loop
+
+	Call EXCELDDECloseChannel(nChannel)
+
+	msLatestExcelFile	= sOutputFile
+	mnNumMapExported	= 0
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportTable")
+	Call ERRShow()
+	Call EXCELDDECloseChannel(nChannel)
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportMapWindowToExcel
+
+Dim	bWinWasResized As Logical,
+	sFile, sSheet, sImageCell As String,
+	nMID, nChannel, nColInitial, nRowInital As Integer
+
+OnError GoTo ErrorOccured
+
+	If msLatestExcelFile = "" Then
+		Note "Please export a table into MS Excel before exporting a map window!"
+		Exit Sub
+	End If
+
+	nMID = MAPFrontMostWindow()
+	If nMID = 0 Then
+		Note "Please open a Map Window before trying to export it to MS Excel"
+		Exit Sub
+	End If
+
+	If NOT EXCELIsFileOpen(msLatestExcelFile) Then
+		Note "The latest used MS Excel file is no longer open."
+		msLatestExcelFile	= ""
+		mnNumMapExported	= 0
+		Exit Sub
+	End If
+
+'	Set Paper Units "cm"
+'	If Abs(WindowInfo(nMID, WIN_INFO_WIDTH) - 15.0) > 0.1 Then
+'		bWinWasResized	= TRUE
+'	End If
+'	If Abs(WindowInfo(nMID, WIN_INFO_HEIGHT) - 15.0) > 0.1 Then
+'		bWinWasResized	= TRUE
+'	End If
+'	If bWinWasResized Then
+'		Set Window nMID
+'			Width 15.0 Units "cm"
+'			Height 15.0 Units "cm"
+'
+'		If NOT Ask("Does the content of the resized Map Window match your expectations?", "Yes", "No") Then
+'			Exit Sub
+'		End If
+'	End If
+
+	sFile	= PathToDirectory$(msLatestExcelFile) & "MapWindow.jpg"
+	Save Window nMID
+		As sFile
+		Type "JPEG"
+		'Width 15 Units "cm"
+		'Height 15 Units "cm"
+		Resolution 150
+
+	Call DEBUGPrint("Exported Map Window (" & (mnNumMapExported + 1) & ") into file " & sFile)
+
+	sSheet		= WORKSHEET_INPUT_MAPS
+	nColInitial	= 2
+	nRowInital	= 2
+
+	nChannel = EXCELDDEOpenChannel(sSheet)
+	If nChannel = 0 Then
+		Note "An error occurred while opening a DDE channel to MS Excel!"
+			& lf
+			& lf & "Make sure your MS Excel template file contains a worksheet called '" & WORKSHEET_INPUT_MAPS & "'!"
+		Exit Sub
+	End If
+
+	sImageCell = Chr$((Asc("A") - 1) + nColInitial) & Str$(nRowInital + (mnNumMapExported * 20))
+
+	Call EXCELDDEInsertValue(nChannel, "1", "1", sImageCell)
+	Call EXCELDDEInsertValue(nChannel, "1", "2", sFile)
+	Call EXCELDDECloseChannel(nChannel)
+
+	Call EXCELDDEExecuteMacro(msLatestExcelFile, "ImportImage")
+
+	mnNumMapExported	= mnNumMapExported + 1
+
+	Kill sFile
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportMapWindowToExcel")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function MENUExportMapToExcelIsEnabled() As Logical
+
+OnError GoTo ErrorOccured
+
+	MENUExportMapToExcelIsEnabled = (msLatestExcelFile <> "")
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportMapToExcelIsEnabled")
+	Call ERRShow()
+
+End Function
+
