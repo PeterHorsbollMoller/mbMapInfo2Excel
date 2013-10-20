@@ -14,7 +14,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.0"
+Define xVersion 		"1.50"
 Define xYear			"2013"
 Define xAddToMenuBar	FALSE
 
@@ -43,11 +43,12 @@ Include "Library\TABLELib.def"
 '-----------------------------------------------------------------------------------------
 Declare Sub Main
 Declare Sub EndProgram
+Declare Sub MENUGoToCommunityDownloads
 
 Declare Function MENUGetExcelTemplateFile() As String
 
 Declare Sub MENUExportTableToExcel
-Declare Sub MENUExportTable_OKButton
+Declare Sub MENUExportTableXLS_OKButton
 
 Declare Sub MENUExportBrowserDataToExcel
 Declare Sub MENUExportBrowserData_OKButton
@@ -55,6 +56,8 @@ Declare Sub MENUExportBrowserData_OKButton
 Declare Sub MENUExport_SaveFileAs
 
 Declare Sub MENUExportTable(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+Declare Sub MENUExportTableViaCSV(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+Declare Sub MENUExportTableCSV(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
 
 Declare Sub MENUExportMapWindowToExcel
 Declare Function MENUExportMapToExcelIsEnabled() As Logical
@@ -90,6 +93,8 @@ OnError GoTo ErrorOccured
 		"Export map window to MS Excel"
 			Calling MENUExportMapWindowToExcel,
 		"(-",
+		"Rate " & xProgram & " at Community Downloads"
+			Calling MENUGoToCommunityDownloads,
 		"End program"
 			Calling EndProgram,
 		"About..."
@@ -153,6 +158,24 @@ End Sub
 'Parameters:
 '
 '**********************************************************************************************''
+Sub MENUGoToCommunityDownloads
+
+OnError GoTo ErrorOccured
+
+	Call FILELaunch("http://communitydownloads.pbinsight.com")
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUGoToCommunityDownloads")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
 Function MENUGetExcelTemplateFile() As String
 
 OnError GoTo ErrorOccured
@@ -185,7 +208,7 @@ OnError GoTo ErrorOccured
 
 	sXLSFile	= DATEGetISODate(CurDate()) & " - " & DATEGetTimeAsHHMMSS(CurTime(), ".") & ".xlsm"
 	If msLatestExcelFile = "" Then
-		sXLSFile	= GetFolderPath$(FOLDER_MYDOCS) & sXLSFile
+		sXLSFile	= FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)) & sXLSFile
 	Else
 		sXLSFile	= PathToDirectory$(msLatestExcelFile) & sXLSFile
 	End If
@@ -213,7 +236,7 @@ OnError GoTo ErrorOccured
 
 		Control OKButton		Position 120,145	Width 40
 			Title "Export"
-			Calling MENUExportTable_OKButton
+			Calling MENUExportTableXLS_OKButton
 		Control CancelButton	Position 165,145	Width 40
 			Title "Close"
 
@@ -230,7 +253,7 @@ End Sub
 'Parameters:
 '
 '**********************************************************************************************''
-Sub MENUExportTable_OKButton
+Sub MENUExportTableXLS_OKButton
 
 Dim	sNewFile, sTab As String
 
@@ -242,12 +265,13 @@ OnError GoTo ErrorOccured
 	sTab			= marrTables(ReadControlValue(CTRL_LST_TABLES))
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
 
-	Call MENUExportTable(sTab, mbExportTitles, sNewFile)
+	Call MENUExportTableViaCSV(sTab, mbExportTitles, sNewFile)
+'	Call MENUExportTableCSV(sTab, mbExportTitles, Left$(sNewFile, Len(sNewFile) - Len(FILEGetExtension(sNewFile))) & "csv")
 
 	Exit Sub
 '-------------------------
 ErrorOccured:
-	Call ERRCreate(Err(), Error$(), "MENUExportTable_OKButton")
+	Call ERRCreate(Err(), Error$(), "MENUExportTableXLS_OKButton")
 	Call ERRShow()
 	Call EXCELDDECloseChannel(nChannel)
 
@@ -277,6 +301,8 @@ OnError GoTo ErrorOccured
 
 	sXLSFile	= DATEGetISODate(CurDate()) & " - " & DATEGetTimeAsHHMMSS(CurTime(), ".") & ".xlsm"
 	If msLatestExcelFile = "" Then
+		Call DEBUGPrint ("GetFolderPath$(FOLDER_MYDOCS): " & GetFolderPath$(FOLDER_MYDOCS))
+		Call DEBUGPrint("FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): " & FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)))
 		sXLSFile	= FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)) & sXLSFile
 	Else
 		sXLSFile	= PathToDirectory$(msLatestExcelFile) & sXLSFile
@@ -330,7 +356,8 @@ OnError GoTo ErrorOccured
 		From Window FrontWindow()
 		Into __dump__to__Excel
 
-	Call MENUExportTable("__dump__to__Excel", mbExportTitles, sNewFile)
+	Call MENUExportTableViaCSV("__dump__to__Excel", mbExportTitles, sNewFile)
+	'Call MENUExportTableCSV("__dump__to__Excel", mbExportTitles, Left$(sNewFile, Len(sNewFile) - Len(FILEGetExtension(sNewFile))) & "csv")
 
 	Close Table "__dump__to__Excel"
 
@@ -485,6 +512,170 @@ ErrorOccured:
 	Call EXCELDDECloseChannel(nChannel)
 
 End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportTableViaCSV(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+
+Dim	sSheet, sTempFile As String,
+	nChannel As Integer
+
+OnError GoTo ErrorOccured
+
+	Do While (EXCELIsFileOpen(sOutputFile) = TRUE)
+		If NOT Ask("The MS Excel file is currently open in MS Excel:"
+				& lf & sOutputFile
+				& lf
+				& lf & "Please close it to continue", "Continue", "Abort") Then
+			Exit Sub
+		End If
+	Loop
+
+	If NOT FileExists(MENUGetExcelTemplateFile()) Then
+		Note "The MS Excel template file doesn't exist:"
+			& lf & MENUGetExcelTemplateFile()
+		Exit Sub
+	End If
+
+	Do While (EXCELIsFileOpen(MENUGetExcelTemplateFile()) = TRUE)
+		If NOT Ask("The MS Excel template file is currently open in MS Excel:"
+				& lf & MENUGetExcelTemplateFile()
+				& lf
+				& lf & "Please close it to continue", "Continue", "Abort") Then
+			Exit Sub
+		End If
+	Loop
+
+	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile())
+	Call DEBUGPrint("   as " & sOutputFile)
+	Save File MENUGetExcelTemplateFile() As sOutputFile
+	If NOT EXCELOpenFile(sOutputFile) Then
+		Note "An error occured when trying to open the MS Excel file in MS Excel: " & sOutputFile
+		Exit Function
+	End If
+
+	sTempFile	= PathToDirectory$(TempFileName$("")) & "MapInfo2Excel_Dump.csv"
+	Call MENUExportTableCSV(sTab, mbExportTitles, sTempFile)
+
+	sSheet		= WORKSHEET_INPUT_DATA
+
+	nChannel = EXCELDDEOpenChannel(sSheet)
+	If nChannel = 0 Then
+		Note "An error occurred while opening a DDE channel to MS Excel."
+			& lf
+			& lf & "Make sure your MS Excel template contains a worksheet called '" & WORKSHEET_INPUT_DATA & "'!"
+		Exit Sub
+	End If
+
+	Call DEBUGPrint("Sending file name to Excel")
+	Call EXCELDDEInsertValue(nChannel, Str$(1), Str$(1), sTempFile)
+	Call EXCELDDECloseChannel(nChannel)
+
+	Call DEBUGPrint("Running import macro in Excel")
+	Call EXCELDDEExecuteMacro(sOutputFile, "ImportMIData")
+
+	Call DEBUGPrint("Deleting CSV file")
+	If FileExists(sTempFile) then
+		Kill sTempFile
+	End If
+
+	msLatestExcelFile	= sOutputFile
+	mnNumMapExported	= 0
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUExportTableViaCSV")
+	Call ERRShow()
+	Call EXCELDDECloseChannel(nChannel)
+
+End Sub
+
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUExportTableCSV(ByVal sTab As String, ByVal bExportTitles As Logical, ByVal sOutputFile As String)
+
+Dim	sCmd, sExpr, sCol As String,
+	nErr, nCol As Integer
+
+OnError GoTo ErrorOccured
+
+	Call DEBUGPrint("Saving table " & sTab)
+	Call DEBUGPrint("   into " & sOutputFile)
+
+	Fetch First From sTab
+	For nCol = 1 To TableInfo(sTab, TAB_INFO_NCOLS)
+		sCol	= ColumnInfo(sTab, "COL" + nCol, COL_INFO_NAME)
+
+		Do Case ColumnInfo(sTab, sCol, COL_INFO_TYPE)
+			Case COL_TYPE_CHAR
+				sExpr = sCol
+			Case COL_TYPE_INTEGER, COL_TYPE_SMALLINT, COL_TYPE_LOGICAL	', COL_TYPE_LARGEINT
+				sExpr = "Str$(" & sCol & ")"
+			Case COL_TYPE_FLOAT, COL_TYPE_DECIMAL
+				sExpr = "FormatNumber$(" & sCol & ")"
+			Case COL_TYPE_DATE
+				sExpr = "FormatDate$(" & sCol & ")"
+			Case COL_TYPE_TIME
+				sExpr = "FormatTime$(" & sCol & ", " & eye & "HH:mm:ss" & eye & ")"
+			Case COL_TYPE_DATETIME
+				sExpr = "FormatDate$(" & sCol & ") + " + eye + " " + eye + " + FormatTime$(" & sCol & ", " & eye & "HH:mm:ss" & eye & ")"
+		End Case
+
+		If sCmd = "" Then
+			sCmd	= sExpr & " " & eye & sCol & eye
+		Else
+			sCmd = sCmd & ", " & sExpr & " " & eye & sCol & eye
+		End If
+
+	Next
+
+	sCmd = "Select " & sCmd & " From " & sTab & " Into __TO__EXPORT__CSV NoSelect"
+	Call DEBUGPrint("sCmd: " & sCmd)
+	Run Command sCmd
+
+	Call DEBUGPrint("Exporting to CSV file: " & TableInfo("__TO__EXPORT__CSV", TAB_INFO_NROWS) & " rows")
+	If bExportTitles Then
+		Export __TO__EXPORT__CSV
+			Into sOutputFile
+			Type "ASCII"
+				Charset SystemInfo(SYS_INFO_CHARSET)
+				Delimiter ";"
+				Titles
+			Overwrite
+	Else
+		Export __TO__EXPORT__CSV
+			Into sOutputFile
+			Type "ASCII"
+				Charset SystemInfo(SYS_INFO_CHARSET)
+				Delimiter ";"
+			Overwrite
+	End If
+
+	Close Table __TO__EXPORT__CSV
+	Call DEBUGPrint("Export done")
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	nErr = Err()
+	Call ERRCreate(nErr, Error$(), "MENUExportTableCSV")
+	If nErr = 305 Then
+		Call ERRPrint()
+		Resume Next
+	Else
+		Call ERRShow()
+	End If
+
+End Sub
+
 
 '**********************************************************************************************''
 'Created by Peter Horsbøll Møller, Pitney Bowes Software
