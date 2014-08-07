@@ -239,3 +239,91 @@
 09:58:06 Running import macro in Excel
 09:58:07 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131007 - 09.57.48.xlsm
 09:58:11 Deleting CSV file
+11:26:46 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+11:26:46 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+11:26:52 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:26:52    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+11:26:55    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+11:26:55 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+11:26:55    as C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:26:55 Trying to open file: C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:26:57 Testing access to file in Excel
+11:26:57 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:26:57 Saving table __dump__to__Excel
+11:27:02 sCmd: Select FormatNumber$(Ogc_fid) "Ogc_fid", Naturtype "Naturtype", FormatNumber$(Id) "Id", Stednavn "Stednavn", FormatDate$(Dato) "Dato", FormatNumber$(Estnaturti) "Estnaturti", Bemaerk "Bemaerk", FormatNumber$(Tilstvurde) "Tilstvurde", Nuvaerende "Nuvaerende", Trusler "Trusler" From __dump__to__Excel Into __TO__EXPORT__CSV NoSelect
+11:27:02 Exporting to CSV file: 52 rows
+11:27:02 Export done
+11:27:02 EXCELDDEOpenChannel to :InputData
+11:27:02 Sending file name to Excel
+11:27:02 Running import macro in Excel
+11:27:02 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:27:02 Deleting CSV file
+11:27:58 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+11:28:02 Exported Map Window (1) into file C:\Users\pe009mo\Documents\MapWindow.jpg
+11:28:02 EXCELDDEOpenChannel to :Maps
+11:28:02 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131101 - 11.26.46.xlsm
+12:05:27 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+12:05:27 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+12:05:30 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131202 - 12.05.27.xlsm
+12:05:30    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Application does not respond. 
+12:05:30 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+12:05:30    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Application does not respond. 
+12:05:30 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+12:05:30    as C:\Users\pe009mo\Documents\20131202 - 12.05.27.xlsm
+12:05:30 Trying to open file: C:\Users\pe009mo\Documents\20131202 - 12.05.27.xlsm
+12:05:31 Testing access to file in Excel
+12:05:31 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131202 - 12.05.27.xlsm
+12:05:31 Saving table __dump__to__Excel
+12:05:31    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_11648\MapInfo2Excel_Dump.csv
+12:05:31 sCmd: Select Reitti "Reitti", Noutorytmi "Noutorytmi", FormatNumber$(Sum_Astioita) "Sum_Astioita", FormatNumber$(Sum_Paikkoja) "Sum_Paikkoja" From __dump__to__Excel Into __TO__EXPORT__CSV NoSelect
+12:05:31 Exporting to CSV file: 4 rows
+12:05:38 EXCELDDEOpenChannel to :InputData
+12:05:38 Sending file name to Excel
+12:05:39 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131202 - 12.05.27.xlsm
+12:05:45 Deleting CSV file
+12:06:46 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+12:06:46 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+12:06:47 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131202 - 12.06.47.xlsm
+12:06:47    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Application does not respond. 
+12:06:47 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+12:06:47    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Application does not respond. 
+12:06:47 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+12:06:47    as C:\Users\pe009mo\Documents\20131202 - 12.06.47.xlsm
+12:06:47 Trying to open file: C:\Users\pe009mo\Documents\20131202 - 12.06.47.xlsm
+12:06:48 Testing access to file in Excel
+12:06:48 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131202 - 12.06.47.xlsm
+12:06:48 Saving table __dump__to__Excel
+12:06:48    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_11648\MapInfo2Excel_Dump.csv
+12:06:48 sCmd: Select Reitti "Reitti", Noutorytmi "Noutorytmi", FormatNumber$(Sum_Astioita) "Sum_Astioita", FormatNumber$(Sum_Paikkoja) "Sum_Paikkoja" From __dump__to__Excel Into __TO__EXPORT__CSV NoSelect
+12:06:48 Exporting to CSV file: 4 rows
+12:06:48 Export done
+12:06:48 EXCELDDEOpenChannel to :InputData
+12:06:48 Sending file name to Excel
+12:06:48 Running import macro in Excel
+12:06:48 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131202 - 12.06.47.xlsm
+12:06:48 Deleting CSV file
+11:31:37 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+11:31:37 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+11:31:46 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:31:46    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+11:31:46 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+11:31:46    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+11:31:46 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+11:31:46    as C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:31:46 Trying to open file: C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:31:47 Testing access to file in Excel
+11:31:47 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:31:47 Saving table __dump__to__Excel
+11:31:47    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_3204\MapInfo2Excel_Dump.csv
+11:31:47 sCmd: Select SOGENOGLE "SOGENOGLE", DSFL "DSFL", KORTNAVN "KORTNAVN", LANGTNAVN "LANGTNAVN", REVUID "REVUID", REVDATE "REVDATE", KOMMUNENR "KOMMUNENR", Str$(VEJ_KODE) "VEJ_KODE", VEJNAVN "VEJNAVN", Str$(HUS_NR) "HUS_NR", HUSBOGSTAV "HUSBOGSTAV", SYNLIGHED "SYNLIGHED", TYPE "TYPE", NKLASSE "NKLASSE", KBEREGN "KBEREGN", TSTAND "TSTAND", FormatNumber$(X_koor) "X_koor", FormatNumber$(Y_koor) "Y_koor", FormatNumber$(RETN) "RETN", Str$(PLAC) "PLAC", Str$(KILDE) "KILDE", Str$(SOGNENR) "SOGNENR", Str$(POSTNR) "POSTNR", POSTDIST "POSTDIST", ASTATUS "ASTATUS", SAGDATO "SAGDATO", Str$(SAGFLAG) "SAGFLAG", Str$(RAPSTATUS) "RAPSTATUS", ADR_ID "ADR_ID", OPRETTET_AF "OPRETTET_AF", FormatDate$(OPRETTET_DEN) + " " + FormatTime$(OPRETTET_DEN, "HH:mm:ss") "OPRETTET_DEN", RETTET_AF "RETTET_AF", FormatDate$(RETTET_DEN) + " " + FormatTime$(RETTET_DEN, "HH:mm:ss") "RETTET_DEN" From __dump__to__Excel Into __TO__EXPORT__CSV NoSelect
+11:31:47 Exporting to CSV file: 13 rows
+11:31:47 Export done
+11:31:47 EXCELDDEOpenChannel to :InputData
+11:31:47 Sending file name to Excel
+11:31:47 Running import macro in Excel
+11:31:47 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:31:47 Deleting CSV file
+11:32:34 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+11:32:35 Exported Map Window (1) into file C:\Users\pe009mo\Documents\MapWindow.jpg
+11:32:35 EXCELDDEOpenChannel to :Maps
+11:32:35 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm

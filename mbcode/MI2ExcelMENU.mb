@@ -14,11 +14,11 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.50"
-Define xYear			"2013"
+Define xVersion 		"1.70"
+Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
-Define FILE_INI			GetFolderPath$(FOLDER_MI_PREFERENCE) & xProgram & ".ini"
+Define FILE_INI			xProgram & ".ini"
 Define FILE_DBG			ApplicationDirectory$() & xProgram & ".dbg"
 'Define FILE_DLL			ApplicationDirectory$() & xProgram & ".dll"
 Define FILE_PAD			GetFolderPath$(FOLDER_MI_PREFERENCE) & xProgram & ".btp"
@@ -32,17 +32,29 @@ Define CTRL_TXT_OUTPUT_FILE	300
 
 '-------------------------------------
 Include "Library\ProgramInfo.def"
+Include "Library\ARRAYLib.def"
+Include "Library\CONFIGFILELib.def"
 Include "Library\DEBUGLib.def"
 Include "Library\DATETIMELib.def"
+Include "Library\ERRORLib.def"
 Include "Library\EXCELLib.def"
 Include "Library\FILELib.def"
 Include "Library\MAPPERLib.def"
-Include "Library\ERRORLib.def"
+Include "Library\RESSTRNGLib.def"
 Include "Library\TABLELib.def"
+
+Include "LanguageStrings.def"
 
 '-----------------------------------------------------------------------------------------
 Declare Sub Main
 Declare Sub EndProgram
+Declare Sub Endhandler
+
+'Declare Sub MENULoadLanguageString
+
+Declare Sub MENUWriteConfigFile
+Declare Sub MENUReadConfigFile
+
 Declare Sub MENUGoToCommunityDownloads
 
 Declare Function MENUGetExcelTemplateFile() As String
@@ -65,7 +77,8 @@ Declare Function MENUExportMapToExcelIsEnabled() As Logical
 Dim	marrTables() As String,
 	msLatestExcelFile As String,
 	mnNumMapExported As Integer,
-	mbExportTitles As Logical
+	mbExportTitles As Logical,
+	msLanguage As String
 '**********************************************************************************************''
 '**   Created by Peter Horsbøll Møller, Pitney Bowes Software
 '
@@ -80,24 +93,34 @@ OnError GoTo ErrorOccured
 	Call PRGISetApplicationCopyrightYear(xYear)
 	Call PRGISetApplicationDevelopedBy("Peter Horsbøll Møller")
 
+'	'**Multiple language files support
+'	If RESSTRNGFindStringFiles(ApplicationDirectory$()) = 0 Then
+'		Note "No language files (.str) were found. These are required for the application to work!"
+'		End Program
+'	End If
+
+	Call MENUReadConfigFile
+
+	Call PRGILoadLanguageStrings(msLanguage)
+
 	'***Enabling Debug if file exists
 	Call DEBUGEnableByFile(FILE_DBG)
 
 	Create Menu xProgramMenu As
-		"Export table to MS Excel..."
+		RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
 			HelpMsg ""
 			Calling MENUExportTableToExcel,
-		"Export current browser data to MS Excel..."
+		RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS)	'"Export current browser data to MS Excel..."
 			HelpMsg ""
 			Calling MENUExportBrowserDataToExcel,
-		"Export map window to MS Excel"
+		RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS)		'"Export map window to MS Excel"
 			Calling MENUExportMapWindowToExcel,
 		"(-",
-		"Rate " & xProgram & " at Community Downloads"
+		RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
 			Calling MENUGoToCommunityDownloads,
-		"End program"
+		RESSTRNGGetString(STR_MNU_END_APPLICATION)		'"End program"
 			Calling EndProgram,
-		"About..."
+		RESSTRNGGetString(STR_MNU_ABOUT_APPLICATION)		'"About..."
 			Calling PRGIAboutbox
 
 	If xAddToMenuBar Then
@@ -112,17 +135,17 @@ OnError GoTo ErrorOccured
 
 	Alter Menu ID M_SHORTCUT_MAPPER Add
 		"(-",
-		"Export map window to MS Excel"
+		RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS)
 			Calling MENUExportMapWindowToExcel
 
 	Alter Menu ID M_SHORTCUT_BROWSER Add
 		"(-",
-		"Export current browser data to MS Excel..."
+		RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS)
 			HelpMsg ""
 			Calling MENUExportBrowserDataToExcel
 
 	Alter Menu ID 47 Add
-		"Export current browser data to MS Excel..."
+		RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS)
 			HelpMsg ""
 			Calling MENUExportBrowserDataToExcel
 
@@ -149,6 +172,117 @@ OnError GoTo ErrorOccured
 '-------------------------
 ErrorOccured:
 	Call ERRCreate(Err(), Error$(), "EndProgram")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub Endhandler
+
+OnError GoTo ErrorOccured
+
+	Call MENUWriteConfigFile
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "Endhandler")
+	Call ERRShow()
+
+End Sub
+
+
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+'Sub MENULoadLanguageString
+'
+'OnError GoTo ErrorOccured
+'
+''	If RESSTRNGFindStringFiles(ApplicationDirectory$()) > 0 Then
+'		If RESSTRNGGetStringFiles(marrLanguageFiles(), marrLanguages()) > 0 Then
+'			Call PRGISetApplicationLanguages(marrLanguages)
+'
+'			mnLanguage	= ARRAYFindValueString(marrLanguages, msLanguage)
+'			Call DEBUGPrint("   Found language Item " & mnLanguage & " as match for " & msLanguage)
+'			If mnLanguage = 0 Then
+'				mnLanguage = 1
+'			End If
+'			Call PRGISetApplicationLanguage(mnLanguage)
+'
+'			If NOT RESSTRNGLoadStringsINI(marrLanguageFiles(mnLanguage)) Then
+'
+'			End If
+'		End If
+''	End If
+'	Exit Sub
+''-------------------------
+'ErrorOccured:
+'	Call ERRCreate(Err(), Error$(), "MENULoadLanguageString")
+'	Call ERRShow()
+'
+'End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUWriteConfigFile
+
+Dim	sFile As String
+
+OnError GoTo ErrorOccured
+
+	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
+
+	Print "PRGIGetApplicationLanguage() = " & PRGIGetApplicationLanguageName()
+	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE", PRGIGetApplicationLanguageName())
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUWriteConfigFile")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub MENUReadConfigFile
+
+Dim	sFile As String
+
+OnError GoTo ErrorOccured
+
+	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
+
+	If FileExists(sFile) Then
+		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+	Else
+		sFile 		= ApplicationDirectory$() & FILE_INI
+		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+	End If
+
+'	mnLanguage	= ARRAYFindValueString(marrLanguages, sLanguage)
+'	Call DEBUGPrint("   Found language Item " & mnLanguage)
+'	If mnLanguage = 0 Then
+'		mnLanguage = 1
+'	End If
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "MENUReadConfigFile")
 	Call ERRShow()
 
 End Sub
@@ -202,7 +336,7 @@ OnError GoTo ErrorOccured
 
 	Redim marrTables(0)
 	If TABGetListOfNames(TAB_USE_ALL_BUT_IMAGES, marrTables) = 0 Then
-		Note "Please open one or more native tables!"
+		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE)		'"Please open one or more native tables!"
 		Exit Sub
 	End If
 
@@ -214,16 +348,16 @@ OnError GoTo ErrorOccured
 	End If
 
 	Dialog
-		Title "Export table to MS Excel"
+		Title  RESSTRNGGetString(STR_EXPORT_TABLE_TO_XLS)
 
 		Control StaticText		Position 5,5	Width 200
-			Title "Select table to export"
+			Title  RESSTRNGGetString(STR_SELECT_TABLE_TO_EXPORT)
 		Control Listbox		Position 5,15	Width 200		Height 100	ID CTRL_LST_TABLES
 			Title From Variable marrTables
 			Value 1
 
 		Control StaticText		Position 5,120	Width 200
-			Title "MS Excel output file"
+			Title  RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
 		Control EditText		Position 5,130	Width 190					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
@@ -232,13 +366,13 @@ OnError GoTo ErrorOccured
 			Calling MENUExport_SaveFileAs
 
 		Control Checkbox		Position 5,145	Width 80					ID CTRL_CHK_EXPORT_TITLES
-			Title "Export column titles"
+			Title  RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 
 		Control OKButton		Position 120,145	Width 40
-			Title "Export"
+			Title  RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportTableXLS_OKButton
 		Control CancelButton	Position 165,145	Width 40
-			Title "Close"
+			Title  RESSTRNGGetString(STR_CLOSE)
 
 	Exit Sub
 '-------------------------
@@ -291,11 +425,11 @@ OnError GoTo ErrorOccured
 
 	nBID = FrontWindow()
 	If nBID = 0 Then
-		Note "Please open a browser window before using this function!"
+		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER)
 		Exit Sub
 	End If
 	If WindowInfo(nBID, WIN_INFO_TYPE) <> WIN_BROWSER Then
-		Note "Please make a browser window the active window before using this function!"
+		Note RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE)
 		Exit Sub
 	End If
 
@@ -309,10 +443,10 @@ OnError GoTo ErrorOccured
 	End If
 
 	Dialog
-		Title "Export browser data to MS Excel"
+		Title RESSTRNGGetString(STR_EXPORT_BROWSER_DATA_TO_XLS)
 
 		Control StaticText		Position 5,5	Width 200
-			Title "MS Excel output file"
+			Title RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
 		Control EditText		Position 5,15	Width 190					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
@@ -321,14 +455,14 @@ OnError GoTo ErrorOccured
 			Calling MENUExport_SaveFileAs
 
 		Control Checkbox		Position 5,30	Width 80					ID CTRL_CHK_EXPORT_TITLES
-			Title "Export column titles"
+			Title RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 			Value mbExportTitles
 
 		Control OKButton		Position 120,30	Width 40
-			Title "Export"
+			Title RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportBrowserData_OKButton
 		Control CancelButton	Position 165,30	Width 40
-			Title "Close"
+			Title RESSTRNGGetString(STR_CLOSE)
 
 	Exit Sub
 '-------------------------
@@ -382,7 +516,7 @@ Dim	sFile As String
 OnError GoTo ErrorOccured
 
 	sFile	= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
-	sFile	= FileSaveAsDlg(PathToDirectory$(sFile), PathToFileName$(sFile), "XLSM", "Please enter the path and name for the new MS Excel file...")
+	sFile	= FileSaveAsDlg(PathToDirectory$(sFile), PathToFileName$(sFile), "XLSM", RESSTRNGGetString(STR_ENTER_PATH_FOR_XLS_FILE))
 	If sFile = "" Then
 		Exit Sub
 	End If
@@ -411,25 +545,25 @@ Dim	sSheet, sCol, sValue As String,
 OnError GoTo ErrorOccured
 
 	Do While (EXCELIsFileOpen(sOutputFile) = TRUE)
-		If NOT Ask("The MS Excel file is currently open in MS Excel:"
+		If NOT Ask(RESSTRNGGetString(STR_ERR_XLS_FILE_OPEN)
 				& lf & sOutputFile
 				& lf
-				& lf & "Please close it to continue", "Continue", "Abort") Then
+				& lf & RESSTRNGGetString(STR_ERR_PLEASE_CLOSE_IT_TO_CONTINUE), RESSTRNGGetString(STR_CONTINUE), RESSTRNGGetString(STR_ABORT)) Then
 			Exit Sub
 		End If
 	Loop
 
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Note "The MS Excel template file doesn't exist:"
+		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
 			& lf & MENUGetExcelTemplateFile()
 		Exit Sub
 	End If
 
 	Do While (EXCELIsFileOpen(MENUGetExcelTemplateFile()) = TRUE)
-		If NOT Ask("The MS Excel template file is currently open in MS Excel:"
+		If NOT Ask(RESSTRNGGetString(STR_ERR_XLS_FILE_OPEN)
 				& lf & MENUGetExcelTemplateFile()
 				& lf
-				& lf & "Please close it to continue", "Continue", "Abort") Then
+				& lf & RESSTRNGGetString(STR_ERR_PLEASE_CLOSE_IT_TO_CONTINUE), RESSTRNGGetString(STR_CONTINUE), RESSTRNGGetString(STR_ABORT)) Then
 			Exit Sub
 		End If
 	Loop
@@ -438,7 +572,7 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("   as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Note "An error occured when trying to open the MS Excel file in MS Excel: " & sOutputFile
+		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
 		Exit Function
 	End If
 
@@ -448,9 +582,9 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Note "An error occurred while opening a DDE channel to MS Excel."
+		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
 			& lf
-			& lf & "Make sure your MS Excel template contains a worksheet called '" & WORKSHEET_INPUT_DATA & "'!"
+			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
 		Exit Sub
 	End If
 
@@ -526,25 +660,25 @@ Dim	sSheet, sTempFile As String,
 OnError GoTo ErrorOccured
 
 	Do While (EXCELIsFileOpen(sOutputFile) = TRUE)
-		If NOT Ask("The MS Excel file is currently open in MS Excel:"
+		If NOT Ask(RESSTRNGGetString(STR_ERR_XLS_FILE_OPEN)
 				& lf & sOutputFile
 				& lf
-				& lf & "Please close it to continue", "Continue", "Abort") Then
+				& lf & RESSTRNGGetString(STR_ERR_PLEASE_CLOSE_IT_TO_CONTINUE), RESSTRNGGetString(STR_CONTINUE), RESSTRNGGetString(STR_ABORT)) Then
 			Exit Sub
 		End If
 	Loop
 
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Note "The MS Excel template file doesn't exist:"
+		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
 			& lf & MENUGetExcelTemplateFile()
 		Exit Sub
 	End If
 
 	Do While (EXCELIsFileOpen(MENUGetExcelTemplateFile()) = TRUE)
-		If NOT Ask("The MS Excel template file is currently open in MS Excel:"
+		If NOT Ask(RESSTRNGGetString(STR_ERR_XLS_FILE_OPEN)
 				& lf & MENUGetExcelTemplateFile()
 				& lf
-				& lf & "Please close it to continue", "Continue", "Abort") Then
+				& lf & RESSTRNGGetString(STR_ERR_PLEASE_CLOSE_IT_TO_CONTINUE), RESSTRNGGetString(STR_CONTINUE), RESSTRNGGetString(STR_ABORT)) Then
 			Exit Sub
 		End If
 	Loop
@@ -553,7 +687,7 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("   as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Note "An error occured when trying to open the MS Excel file in MS Excel: " & sOutputFile
+		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
 		Exit Function
 	End If
 
@@ -564,9 +698,9 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Note "An error occurred while opening a DDE channel to MS Excel."
+		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
 			& lf
-			& lf & "Make sure your MS Excel template contains a worksheet called '" & WORKSHEET_INPUT_DATA & "'!"
+			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
 		Exit Sub
 	End If
 
@@ -691,18 +825,18 @@ Dim	bWinWasResized As Logical,
 OnError GoTo ErrorOccured
 
 	If msLatestExcelFile = "" Then
-		Note "Please export a table into MS Excel before exporting a map window!"
+		Note RESSTRNGGetString(STR_ERR_EXPORT_DATA_BEFORE_MAP)
 		Exit Sub
 	End If
 
 	nMID = MAPFrontMostWindow()
 	If nMID = 0 Then
-		Note "Please open a Map Window before trying to export it to MS Excel"
+		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP)
 		Exit Sub
 	End If
 
 	If NOT EXCELIsFileOpen(msLatestExcelFile) Then
-		Note "The latest used MS Excel file is no longer open."
+		Note RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN)
 		msLatestExcelFile	= ""
 		mnNumMapExported	= 0
 		Exit Sub
@@ -741,9 +875,9 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Note "An error occurred while opening a DDE channel to MS Excel!"
+		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
 			& lf
-			& lf & "Make sure your MS Excel template file contains a worksheet called '" & WORKSHEET_INPUT_MAPS & "'!"
+			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_MAPS
 		Exit Sub
 	End If
 

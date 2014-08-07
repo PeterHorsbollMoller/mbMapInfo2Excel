@@ -1,12 +1,15 @@
 [LINK]
 Application=..\MapInfo2Excel.mbp
 Module=Library\ProgramInfo.mbo
+Module=Library\ARRAYLib.mbo
+Module=Library\CONFIGFILELib.mbo
 Module=Library\DEBUGLib.mbo
 Module=Library\DATETIMELib.mbo
 Module=Library\FILELib.mbo
 Module=Library\EXCELLib.mbo
 Module=Library\ERRORLib.mbo
 Module=Library\MAPPERLib.mbo
+Module=Library\RESSTRNGLib.mbo
 Module=Library\STRINGLib.mbo
 Module=Library\TABLELib.mbo
 Module=MI2ExcelMENU.mbo

@@ -2,6 +2,10 @@
 '********************************************************
 '17-03-2011 10:09:55	Fixed some issues with the same variable used by more properties
 '23-04-2012 10:08:20	Added property set Sub PRGISetApplicationDevelopedFor(...) / PRGIGetApplicationDevelopedFor() As String
+'07-08-2014 13:05:56	Improved the handling of language files by adding:
+'					- PRGILoadLanguageStrings: which will discover existing language files in the application directory and pick the one matching the language given thru the parameter
+'					Changed the default URL_PBBI_WEBSITE to www.mapinfo.com
+'					The module now also requires these modules ARRAYLib and RESSTRNGLib
 '********************************************************
 
 'When using this module, make sure to set these values in your main module
@@ -47,9 +51,12 @@ Declare Sub PRGISetApplicationHelpFile(ByVal sHelpFile As String)
 Declare Function PRGIGetApplicationHelpFile() As String
 
 'Set and get variables for using multiple languages. If these are not set the language popup shows value 'default'
-Declare Sub PRGISetApplicationLanguages(sLanguages() As String)
-Declare Sub PRGISetApplicationLanguage(iLanguage As Integer)
+Declare Sub PRGISetApplicationLanguages(sLanguages() As String)	'Don't use any more - call PRGILoadLanguageStrings
+Declare Sub PRGISetApplicationLanguage(iLanguage As Integer)	'Don't use any more - call PRGILoadLanguageStrings
 Declare Function PRGIGetApplicationLanguage() As Integer
+Declare Function PRGIGetApplicationLanguageName() As String
+
+Declare Sub PRGILoadLanguageStrings(ByVal sLanguage As String)
 
 'Show the About box using the Information given above
 Declare Sub PRGIAboutbox

@@ -1,0 +1,35 @@
+
+Define	STR_MNU_EXPORT_TAB_TO_XLS			1		'"Export &table to MS Excel..."
+Define 	STR_MNU_EXPORT_BROWSER_TO_XLS			2		'"Export current browser data to MS Excel..."
+Define 	STR_MNU_EXPORT_MAP_TO_XLS			3 		'"Export map window to MS Excel"
+Define 	STR_MNU_RATE_APPLICATION				4		'"Rate the application at Community Downloads"
+Define	STR_MNU_END_APPLICATION				5		'"End program"
+Define 	STR_MNU_ABOUT_APPLICATION			6		'"About..."
+
+Define	STR_ERR_PLEASE_OPEN_TABLE			7		'"Please open one or more native tables!"
+Define	STR_EXPORT_TABLE_TO_XLS				8		'"Export table to MS Excel"
+Define	STR_SELECT_TABLE_TO_EXPORT			9		'"Select table to export"
+Define	STR_XLS_OUTPUT_FILE					10		'"MS Excel output file"
+Define	STR_EXPORT_COULMN_TITLES				11		'"Export column titles"
+Define	STR_EXPORT						12		'"Export"
+Define	STR_CLOSE							13		'"Close"
+
+Define	STR_ERR_PLEASE_OPEN_BROWSER			14		'"Please open a browser window before using this function!"
+Define	STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE		15		'"Please make a browser window the active window before using this function!"
+Define	STR_EXPORT_BROWSER_DATA_TO_XLS		16		'"Export browser data to MS Excel"
+
+Define	STR_ENTER_PATH_FOR_XLS_FILE			17		'"Please enter the path and name for the new MS Excel file..."
+
+Define	STR_ERR_XLS_FILE_OPEN				18		'"The MS Excel file is currently open in MS Excel:"
+Define	STR_ERR_PLEASE_CLOSE_IT_TO_CONTINUE	19		'"Please close it to continue"
+Define	STR_CONTINUE						20		'"Continue"
+Define	STR_ABORT							21		'"Abort"
+Define	STR_ERR_XLS_TEMPL_FILE_NOT_FOUND		22		'"The MS Excel template file doesn't exist:"
+Define	STR_ERR_OPENING_FILE				23		'"An error occured when trying to open the MS Excel file in MS Excel: " & sOutputFile
+
+Define	STR_ERR_OPENING_DDE_CHANNEL_TO_XLS		24		'"An error occurred while opening a DDE channel to MS Excel."
+Define	STR_CHECK_EXISTENSE_OF_SHEET			25		'"Make sure your MS Excel template contains a worksheet called: "
+
+Define	STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP	26		'"Please export a table into MS Excel before exporting a map window!"
+Define	STR_ERR_PLEASE_OPEN_A_MAP			27		'"Please open a Map Window before trying to export it to MS Excel"
+Define	STR_ERR_LATEST_XLS_FILE_NOT_OPEN		28		'"The latest used MS Excel file is no longer open."

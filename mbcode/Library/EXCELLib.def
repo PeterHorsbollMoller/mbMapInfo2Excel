@@ -18,6 +18,8 @@
 '					- Function EXCELIsChannelToSheetValid() As Logical
 '	07-06-2013	Added:
 '					- Function EXCELDDEReadValue(...) As String
+'	10-01-2014 	Changed:
+'					- EXCELDDECloseChannel: If it fails because the channel isn't open, the error is ignored
 '**********************************************************************************************************************************************
 
 '**Requires MapInfo Pro 9.5

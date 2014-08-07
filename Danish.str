@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Dansk
+
+[STRINGS]
+1="Eksporter &tabel til MS Excel..."
+2="Eksporter aktuelle data i &listevinduet til MS Excel..."
+3="Eksporter &kortet til MS Excel"
+4="&Bedøm applikationen på Community Downloads"
+5="&Afslut program"
+6="&Om..."
+
+7="Åbn først en eller flere almindelige tabeller!"
+8="Eksporter tabel til MS Excel"
+9="Vælg tabel til eksport"
+10="MS Excel output-fil"
+11="Eksporter kolonneoverskrifter"
+12="Eksporter"
+13="Luk"
+
+14="Åbn et listevindue før du anvender denne funktion!"
+15="Gør et listevindue til det aktive vindue før du anvender denne funktion!"
+16="Eksporter data fra listevindue til MS Excel"
+
+17="Angiv venligst sti og navn på ny MS Excel fil..."
+
+18="MS Excel filen er åben i MS Excel: "
+19="Du skal lukke filen for at fortsætte"
+20="Fortsæt"
+21="Afbryd"
+22="MS Excel skabelon-filen findes ikke:"
+23="Der opstod en fejl under åbning af MS Excel filen i MS Excel: "
+
+24="Der opstod en fejl under etablering af DDE-kanal til MS Excel."
+25="Sikre dig at MS Excel skabelonen har et faneblad med navnet: "
+
+26="Du skal først eksportere data til MS Excel før du kan eksportere et kort!"
+27="Åbn først et kort før du forsøger at overføre det til MS Excel"
+28="Den sidst anvendte MS Excel fil er ikke længere åben."

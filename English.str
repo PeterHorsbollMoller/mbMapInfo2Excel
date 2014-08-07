@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=English
+
+[STRINGS]
+1="Export &table to MS Excel..."
+2="Export current &browser data to MS Excel..."
+3="Export &map window to MS Excel"
+4="&Rate the application at Community Downloads"
+5="&End program"
+6="&About..."
+
+7="Please open one or more native tables!"
+8="Export table to MS Excel"
+9="Select table to export"
+10="MS Excel output file"
+11="Export column titles"
+12="Export"
+13="Close"
+
+14="Please open a browser window before using this function!"
+15="Please make a browser window the active window before using this function!"
+16="Export browser data to MS Excel"
+
+17="Please enter the path and name for the new MS Excel file..."
+
+18="The MS Excel file is currently open in MS Excel: "
+19="Please close it to continue"
+20="Continue"
+21="Abort"
+22="The MS Excel template file doesn't exist:"
+23="An error occured when trying to open the MS Excel file in MS Excel: "
+
+24="An error occurred while opening a DDE channel to MS Excel."
+25="Make sure your MS Excel template contains a worksheet called: "
+
+26="Please export a table into MS Excel before exporting a map window!"
+27="Please open a Map Window before trying to export it to MS Excel"
+28="The latest used MS Excel file is no longer open."

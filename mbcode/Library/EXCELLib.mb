@@ -395,7 +395,7 @@ OnError GoTo ErrorOccured
 '-------------------------
 ErrorOccured:
 	Call ERRCreate(Err(), Error$(), "EXCELDDECloseChannel")
-	Call ERRShow()
+'	Call ERRPrint()
 
 End Sub
 
