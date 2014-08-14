@@ -14,7 +14,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.70"
+Define xVersion 		"1.70.1"
 Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
@@ -825,7 +825,7 @@ Dim	bWinWasResized As Logical,
 OnError GoTo ErrorOccured
 
 	If msLatestExcelFile = "" Then
-		Note RESSTRNGGetString(STR_ERR_EXPORT_DATA_BEFORE_MAP)
+		Note RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP)
 		Exit Sub
 	End If
 

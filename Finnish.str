@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Finnish
+
+[STRINGS]
+1="Vie tietokanta MS Exceliin..."
+2="Vie taulukon tiedot MS Exceliin..."
+3="Vie karttaikkuna MS Exceliin"
+4="&Arvioi sovellus Community Downloads-sivustolla"
+5="&Lopeta"
+6="&Tietoja..."
+
+7="Avaa yksi tai useampia natiiveja tietokantoja!"
+8="Vie tietokanta MS Exceliin"
+9="Valitse vietävä tietokanta"
+10="MS Excel tulostiedosto"
+11="Vie sarakeotsikot"
+12="Vie"
+13="Sulje"
+
+14="Avaa ensin taulukkoikkuna ennen kuin käytät tätä toimintoa!"
+15="Aktivoi taulukkoikkuna ennen tämän toiminnon käyttämistä!"
+16="Vie taulukon tiedot MS Exceliin"
+
+17="Anna polku ja nimi uudelle MS Excel-tiedostolle..."
+
+18="Tiedosto on avoinna MS Excelissä: "
+19="Sulje se jatkaaksesi"
+20="Jatka"
+21="Keskeytä"
+22="MS Excel-templatetiedostoa ei löydy:"
+23="Tapahtui virhe kun yritettiin avata tiedosto MS Excelissä: "
+
+24="Tapahtui virhe DDE-yhteyden avaamisessa MS Exceliin."
+25="Varmista että MS Excel-templaatti sisältää työkirjan nimeltään: "
+
+26="Vie ensin taulukko ennen kuin viet kartan!"
+27="Avaa karttaikkuna ennen kuin yrität viedä sitä MS Exceliin"
+28="Viimeksi käytetty MS Excel-tiedosto ei ole enää auki."

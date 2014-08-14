@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Italian
+
+[STRINGS]
+1="Esporta la &tavola in MS Excel..."
+2="Esporta la finestra &Dati attiva in MS Excel..."
+3="Esporta la finestra &Mappa in MS Excel"
+4="&Vota questa applicazione nella Community Downloads"
+5="&Esci dal programma"
+6="&Informazioni..."
+
+7="Apri, per favore, una o più tavole native di MapInfo Professional!"
+8="Esporta la tavola in MS Excel"
+9="Seleziona la tavola da esportare"
+10="MS Excel file di output"
+11="Esporta i titoli delle colonne"
+12="Esporta"
+13="Chiudi"
+
+14="Apri una finestra dati prima di utilizzare questa funzionalità!"
+15="Rendi la finestra dati attiva prima di utilizzare questa funzionalità!"
+16="Esporta la finestra dati in MS Excel"
+
+17="Specifica, per favore, il percorso e il nome del nuovo file MS Excel file..."
+
+18="Il file MS Excel è correntemente aperto in MS Excel: "
+19="Chiudi prima di continuare"
+20="Procedi"
+21="Blocca"
+22="Il file MS Excel template non esiste:"
+23="Si è verificato un errore quando si è cercato di aprire il file in MS Excel: "
+
+24="Si è verificato un errore nell'apertura del canale DDE con MS Excel."
+25="Controlla che il file MS Excel template contenga un foglio chiamato: "
+
+26="Esporta la tavola in MS Excel prima di esportare la finestra Mappa!"
+27="Apri una finestra Mappa prima di esportarla in MS Excel"
+28="L'ultimo file MS Excel utilizzato non è più aperto."
