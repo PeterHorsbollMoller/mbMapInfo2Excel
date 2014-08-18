@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Spanish
+
+[STRINGS]
+1="Exportar &tabla a MS Excel..."
+2="Exportar actual &listado de datos a MS Excel..."
+3="Exportar ventana de &mapa a MS Excel"
+4="&Valorar la aplicación en Community Downloads"
+5="&Salir del programa"
+6="&Sobre..."
+
+7="Por favor abra una o más tablas nativas!"
+8="Exportar tabla a  MS Excel"
+9="Seleccionar tabla a exportar"
+10="Fichero de salida de MS Excel"
+11="Exportar nombres de columnas"
+12="Exportar"
+13="Cerrar"
+
+14="Por favor, abra una ventana de listado para usar esta función!"
+15="Por favor, ponga la ventana de listado como ventana activa antes de usar esta función!"
+16="Exportar datos del listado a MS Excel"
+
+17="Por favor, introduzca la ruta y nombre del nuevo fichero MS Excel..."
+
+18="El fichero MS Excel file esta actualmente en uso en  MS Excel: "
+19="Por favor, cierre el fichero para continuar"
+20="Continuar"
+21="Cancelar"
+22="El fichero de plantilla MS Excel no existe:"
+23="Ha ocurrido un error al intentar abrir el fichero MS Excel en MS Excel: "
+
+24="Ha ocurrido un error al intentar abrir el canal DDE con MS Excel."
+25="Asegurese de que su plantilla  MS Excel contiene una hoja de cálculo llamada: "
+
+26="Por favor, exporte una tabla a MS Excel antes de exportar la ventana de mapa!"
+27="Por favor, abra una Ventana de Mapa antes de intentar exportarla a MS Excel"
+28="El último fichero MS Excel utilizado ya no está abierto."
