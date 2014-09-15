@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Français
+
+[STRINGS]
+1="Exporter la &table vers MS Excel..."
+2="Exporter le ta&bleau de données vers MS Excel..."
+3="Exporter la fenêtre carte vers MS Excel"
+4="&Voter pour cette application sur Community Downloads"
+5="&Quitter"
+6="&A propos..."
+
+7="Ouvrir une ou plusieurs tables natives !"
+8="Exporter la table vers MS Excel"
+9="Sélectionner la table à exporter"
+10="Fichier de sortie MS Excel"
+11="Exporter les en-têtes de colonnes"
+12="Exporter"
+13="Close"
+
+14="Ouvrir une fenêtre Données pour utiliser cette fonction!"
+15="Activer une fenêtre Données pour utiliser cette fonction!"
+16="Exporter le fenêtre Données vers MS Excel"
+
+17="Entrer un chemin et un nom pour le nouveau fichier MS Excel..."
+
+18="Le Fichier MS Excel est actuellement ouvert dans MS Excel: "
+19="Fermer le fichier pour continuer"
+20="Continuer"
+21="Annuler"
+22="Le template MS Excel n'existe pas:"
+23="Une erreur est survenue pendant l'ouverture du fichier MS Excel dans MS Excel: "
+
+24="Une erreur est survenue pendant l'ouverture du lien DDE vers MS Excel."
+25="Vérifier que le template MS Excel contient bien une feuille nommée: "
+
+26="Exporter une table vers MS Excel avant d'exporter une fenêtre carte!"
+27="Ouvrir une fenêtre carte avant de l'exporter vers MS Excel"
+28="Le dernier fichier MS Excel utilisé n'est plus ouvert."

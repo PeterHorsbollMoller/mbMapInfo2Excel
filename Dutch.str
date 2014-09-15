@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Nederlands
+
+[STRINGS]
+1="Exporteer &tabel naar MS Excel..."
+2="Exporteer huidig &bladervenster naar MS Excel..."
+3="Exporteer &kaartvenster naar MS Excel"
+4="&Beoordeel de applicatie op Community Downloads"
+5="&Beëindig het programma"
+6="&Over..."
+
+7="Gelieve een of meer systeemeigen tabellen te openen!"
+8="Exporteer tabel naar MS Excel"
+9="Selecteer de te exporteren tabel"
+10="MS Excel uitvoerbestand"
+11="Exporteer kolomtitels"
+12="Exporteer"
+13="Sluit"
+
+14="Gelieve een bladervenster te openen voor het gebruik van deze functie!"
+15="Gelieve een bladervenster het actieve venster te maken voor het gebruik van deze functie!"
+16="Exporteer bladervenster naar MS Excel"
+
+17="Gelieve het pad en naam voor het nieuwe MS Excel bestand op te geven..."
+
+18="Het MS Excel bestand is momenteel geopend in MS Excel: "
+19="Gelieve het af te sluiten om door te gaan"
+20="Doorgaan"
+21="Afbreken"
+22="Het MS Excel sjabloonbestand bestaat niet:"
+23="Er is een fout opgetreden bij het openen van het MS Excel bestand in MS Excel: "
+
+24="Er is een fout opgetreden bij het openen van een DDE kanaal naar MS Excel."
+25="Zorg er voor dat uw MS Excel sjabloon een werkblad bevat met de naam: "
+
+26="Gelieve een tabel naar MS Excel te exportere voordat u een kaartvenster exporteert!"
+27="Gelieve een kaartvenster te openen voordat u het naar MS Excel exporteert"
+28="Het laatstgebruikte MS Excel bestand is niet meer geopend."

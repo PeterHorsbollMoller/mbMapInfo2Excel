@@ -1,5 +1,5 @@
 '============================================================================
-' MapInfo version 10.5 - System defines
+' MapInfo version 12.5 - System defines
 '----------------------------------------------------------------------------
 ' This file contains defines useful when programming in the MapBasic
 ' language.  There are three versions of this file:
@@ -10,6 +10,7 @@
 ' The defines in this file are organized into the following sections:
 '     General Purpose defines:
 '       macros, logical constants, angle conversion, colors, string length
+'     BrowserInfo() defines
 '     ButtonPadInfo() defines
 '     ColumnInfo() and column type defines
 '     CommandInfo() and task switch defines
@@ -22,9 +23,12 @@
 '     GroupLayerInfo() defines
 '     LayerListInfo() defines
 '     LayerInfo(), display mode, label property, layer type, hotlink defines
+'     LayoutInfo() and LayoutItemInfo() defines
 '     LegendInfo() and legend orientation defines
 '     LegendFrameInfo() and frame type defines
+'     LegendTextFrameInfo() defines
 '     LegendStyleInfo() defines
+'     LibraryServiceInfo() defines
 '     LocateFile$() defines
 '     Map3DInfo() defines
 '     MapperInfo(), display mode, calculation type, and clip type defines
@@ -111,6 +115,15 @@ Define YELLOW                                   16776960
 'Maximum length for character string
 '----------------------------------------------------------------------------
 Define MAX_STRING_LENGTH                        32767
+
+'============================================================================
+' BrowserInfo() defines
+'============================================================================
+Define BROWSER_INFO_NROWS                       1
+Define BROWSER_INFO_NCOLS                       2
+Define BROWSER_INFO_CURRENT_ROW                 3
+Define BROWSER_INFO_CURRENT_COLUMN              4
+Define BROWSER_INFO_CURRENT_CELL_VALUE          5
 
 '============================================================================
 ' ButtonPadInfo() defines
@@ -237,7 +250,7 @@ Define FOLDER_MYDOCS                            5
 Define FOLDER_MYPICS                            39
 
 '============================================================================
-' GetPreferencePath$() defines
+' GetPreferencePath$(), GetCurrentPath$(), and Set Path defines
 '============================================================================
 
 Define PREFERENCE_PATH_TABLE          0
@@ -250,7 +263,8 @@ Define PREFERENCE_PATH_MIQUERY        6
 Define PREFERENCE_PATH_NEWGRID        7
 Define PREFERENCE_PATH_CRYSTAL        8
 Define PREFERENCE_PATH_GRAPHSUPPORT   9
-Define PREFERENCE_PATH_REMOTETABLE    11
+Define PREFERENCE_PATH_REMOTETABLE    10
+Define PREFERENCE_PATH_SHAPEFILE      11
 Define PREFERENCE_PATH_WFSTABLE       12
 Define PREFERENCE_PATH_WMSTABLE       13
 
@@ -368,7 +382,7 @@ Define LAYER_INFO_LAYER_TRANSLUCENCY            40
 Define LAYER_INFO_LABEL_ALPHA                   41
 Define LAYER_INFO_LAYERLIST_ID                  42
 Define LAYER_INFO_PARENT_GROUP_ID               43
-'Code 44 - 52 are for override styel & label
+'Code 44 - 52 are for override style & label
 Define LAYER_INFO_OVR_STYLE_COUNT               44
 Define LAYER_INFO_OVR_LBL_COUNT                 45
 Define LAYER_INFO_OVR_STYLE_CURRENT             46
@@ -378,6 +392,18 @@ Define LAYER_INFO_OVR_PEN_COUNT                 49
 Define LAYER_INFO_OVR_BRUSH_COUNT               50
 Define LAYER_INFO_OVR_SYMBOL_COUNT              51
 Define LAYER_INFO_OVR_FONT_COUNT                52
+Define LAYER_INFO_TILE_SERVER_LEVEL             53
+'Advanced labelling options
+Define LAYER_INFO_LBL_AUTO_POSITION             54
+Define LAYER_INFO_LBL_AUTO_SIZES                55
+Define LAYER_INFO_LBL_SUPPRESS_IF_NO_FIT        56
+Define LAYER_INFO_LBL_AUTO_SIZE_STEP            57
+Define LAYER_INFO_LBL_CURVED_BEST_POSITION      58
+Define LAYER_INFO_LBL_CURVED_FALLBACK           59
+Define LAYER_INFO_LBL_USE_ABBREVIATION          60
+Define LAYER_INFO_ABBREVIATION_EXPR             61
+Define LAYER_INFO_LBL_AUTO_CALLOUT              62
+Define LAYER_INFO_LBL_ORDER                     63
 
 '----------------------------------------------------------------------------
 ' Values returned by LayerInfo() for LAYER_INFO_LABEL_ORIENTATION and
@@ -403,8 +429,10 @@ Define LAYER_INFO_LBL_LT_SIMPLE                 1
 Define LAYER_INFO_LBL_LT_ARROW                  2
 
 '----------------------------------------------------------------------------
-' Label Positions, returned by LayerInfo() for LAYER_INFO_LBL_POS
+' Label Positions, returned by LayerInfo() for LAYER_INFO_LBL_POS and
+' LabelInfo() for LABEL_INFO_POSITION
 '----------------------------------------------------------------------------
+Define LAYER_INFO_LBL_POS_AUTO                 -1
 Define LAYER_INFO_LBL_POS_CC                    0
 Define LAYER_INFO_LBL_POS_TL                    1
 Define LAYER_INFO_LBL_POS_TC                    2
@@ -486,6 +514,15 @@ Define LBL_OVR_INFO_AUTODISPLAY        17
 Define LBL_OVR_INFO_POS_RETRY          18
 Define LBL_OVR_INFO_LINE_PEN           19
 Define LBL_OVR_INFO_PERCENT_OVER       20
+Define LBL_OVR_INFO_AUTO_POSITION      21
+Define LBL_OVR_INFO_AUTO_SIZES         22
+Define LBL_OVR_INFO_SUPPRESS_IF_NO_FIT 23
+Define LBL_OVR_INFO_AUTO_SIZE_STEP     24
+Define LBL_OVR_INFO_CURVED_BEST_POSITION 25
+Define LBL_OVR_INFO_CURVED_FALLBACK    26
+Define LBL_OVR_INFO_USE_ABBREVIATION   27
+Define LBL_OVR_INFO_ABBREVIATION_EXPR  28
+Define LBL_OVR_INFO_AUTO_CALLOUT       29
 
 '----------------------------------------------------------------------------
 ' Possible return value of LabelOverrideInfo for code LBL_OVR_INFO_VISIBILITY
@@ -539,6 +576,10 @@ Define LEGEND_INFO_MAP_ID                       1
 Define LEGEND_INFO_ORIENTATION                  2
 Define LEGEND_INFO_NUM_FRAMES                   3
 Define LEGEND_INFO_STYLE_SAMPLE_SIZE            4
+Define LEGEND_INFO_LINE_SAMPLE_WIDTH            5
+Define LEGEND_INFO_REGION_SAMPLE_WIDTH          6
+Define LEGEND_INFO_REGION_SAMPLE_HEIGHT         7
+Define LEGEND_INFO_NUM_TEXTFRAMES               8
 
 '============================================================================
 ' Orientation codes, returned by LegendInfo() for LEGEND_INFO_ORIENTATION
@@ -572,6 +613,22 @@ Define FRAME_INFO_NUM_STYLES                    13
 Define FRAME_INFO_VISIBLE                       14
 Define FRAME_INFO_COLUMN                        15
 Define FRAME_INFO_LABEL                         16
+Define FRAME_INFO_COLUMNS                       17
+Define FRAME_INFO_NUM_VISIBLE_ROWS              18
+Define FRAME_INFO_LINE_SAMPLE_WIDTH             19
+Define FRAME_INFO_REGION_SAMPLE_WIDTH           20
+Define FRAME_INFO_REGION_SAMPLE_HEIGHT          21
+Define FRAME_INFO_AUTO_FONT_SIZE                22
+
+'============================================================================
+' LegendTextFrameInfo() defines
+'============================================================================
+Define TEXTFRAME_INFO_POS_X                     1
+Define TEXTFRAME_INFO_POS_Y                     2
+Define TEXTFRAME_INFO_WIDTH                     3
+Define TEXTFRAME_INFO_HEIGHT                    4
+Define TEXTFRAME_INFO_TEXT                      5
+Define TEXTFRAME_INFO_TEXT_FONT                 6
 
 '============================================================================
 ' Frame Types, returned by LegendFrameInfo() for FRAME_INFO_TYPE
@@ -643,6 +700,49 @@ Define ISOGRAM_MAX_TIME_UNITS                   21
 Define LEGEND_STYLE_INFO_TEXT                   1
 Define LEGEND_STYLE_INFO_FONT                   2
 Define LEGEND_STYLE_INFO_OBJ                    3
+Define LEGEND_STYLE_INFO_ROW_VISIBLE            4
+
+'============================================================================
+' LayoutInfo() defines
+'============================================================================
+Define LAYOUT_INFO_NUM_ITEMS                    1
+Define LAYOUT_INFO_WIDTH                        2
+Define LAYOUT_INFO_HEIGHT                       3
+Define LAYOUT_INFO_LEFT_MARGIN                  4
+Define LAYOUT_INFO_RIGHT_MARGIN                 5
+Define LAYOUT_INFO_TOP_MARGIN                   6
+Define LAYOUT_INFO_BOTTOM_MARGIN                7
+Define LAYOUT_INFO_ZOOM                         8
+Define LAYOUT_INFO_CENTER_X                     9
+Define LAYOUT_INFO_CENTER_Y                     10
+
+'============================================================================
+' LayoutItemInfo() defines
+'============================================================================
+Define LAYOUT_ITEM_INFO_POS_X                    1
+Define LAYOUT_ITEM_INFO_POS_Y                    2
+Define LAYOUT_ITEM_INFO_WIDTH                    3
+Define LAYOUT_ITEM_INFO_HEIGHT                   4
+Define LAYOUT_ITEM_INFO_WIN                      5
+Define LAYOUT_ITEM_INFO_SELECTED                 6
+Define LAYOUT_ITEM_INFO_ACTIVATED                7
+Define LAYOUT_ITEM_INFO_EMPTY                    8
+Define LAYOUT_ITEM_INFO_LEGEND_FRAME_ID          9
+Define LAYOUT_ITEM_INFO_LEGEND_DESIGNER_WINDOW  10
+Define LAYOUT_ITEM_INFO_TYPE                    11
+Define LAYOUT_ITEM_INFO_IMAGE_FILE              12
+Define LAYOUT_ITEM_INFO_OBJ                     13
+
+'============================================================================
+' Item types, returned by LayoutItemInfo() for LAYOUT_ITEM_INFO_TYPE
+'============================================================================
+Define LAYOUT_ITEM_TYPE_EMPTY                    0
+Define LAYOUT_ITEM_TYPE_MAPPER                   1
+Define LAYOUT_ITEM_TYPE_BROWSER                  2
+Define LAYOUT_ITEM_TYPE_LEGEND                   3
+Define LAYOUT_ITEM_TYPE_TEXT                     4
+Define LAYOUT_ITEM_TYPE_SHAPE                    5
+Define LAYOUT_ITEM_TYPE_IMAGE                    6
 
 '============================================================================
 ' LocateFile$() defines
@@ -726,6 +826,7 @@ Define MAPPER_INFO_ALL_LAYERS                   28
 Define MAPPER_INFO_GROUPLAYERS                  29
 Define MAPPER_INFO_NUM_ADORNMENTS               200
 Define MAPPER_INFO_ADORNMENT                    200
+Define MAPPER_INFO_LABELS_SELECTABLE            30
 
 '----------------------------------------------------------------------------
 ' Display Modes, returned by MapperInfo() for MAPPER_INFO_DISPLAY_DMS
@@ -742,7 +843,7 @@ Define MAPPER_INFO_DISPLAY_USNG_NAD27           4
 Define MAPPER_INFO_DISPLAY_SCALE                0
 Define MAPPER_INFO_DISPLAY_ZOOM                 1
 Define MAPPER_INFO_DISPLAY_POSITION             2
-
+Define MAPPER_INFO_DISPLAY_CARTOGRAPHIC_SCALE   3
 '----------------------------------------------------------------------------
 ' Distance Calculation Types from MapperInfo() for MAPPER_INFO_DIST_CALC_TYPE
 '----------------------------------------------------------------------------
@@ -1033,6 +1134,9 @@ Define SYS_INFO_MDICLIENTWND                    15
 Define SYS_INFO_PRODUCTLEVEL                    16
 Define SYS_INFO_APPIDISPATCH                    17
 Define SYS_INFO_MIBUILD_NUMBER                  18
+Define SYS_INFO_MIFULLVERSION                   19
+Define SYS_INFO_IMAPINFOAPPLICATION             20
+Define SYS_INFO_MAPINFO_INTERFACE               21
 
 '----------------------------------------------------------------------------
 ' Platform, returned by SystemInfo() for SYS_INFO_PLATFORM
@@ -1054,6 +1158,13 @@ Define MIPLATFORM_POWERMAC                      3
 Define MIPLATFORM_MAC68K                        4
 Define MIPLATFORM_HP                            5
 Define MIPLATFORM_SUN                           6
+Define MIPLATFORM_WIN64                         7
+
+'----------------------------------------------------------------------------
+' Interface Type, returned by SystemInfo() for SYS_INFO_MAPINFO_INTERFACE
+'----------------------------------------------------------------------------
+Define MIINTERFACE_CLASSICMENU                  0
+Define MIINTERFACE_RIBBON                       1
 
 '============================================================================
 ' TableInfo() defines
@@ -1096,6 +1207,13 @@ Define TAB_INFO_BROWSER_LIST                    35
 Define TAB_INFO_THEME_METADATA                  36
 Define TAB_INFO_COORDSYS_CLAUSE_WITHOUT_BOUNDS  37
 Define TAB_INFO_DESCRIPTION                     38
+Define TAB_INFO_ID                              39
+Define TAB_INFO_PARENTID                        40
+Define TAB_INFO_ISMANAGED                       41
+Define TAB_INFO_ADSK_TEXTOBJECT                 42
+Define TAB_INFO_OVERRIDE_COORDINATE_ORDER       43
+Define TAB_INFO_PERSIST                         44
+Define TAB_INFO_PREFER_HTML_FOR_INFO_TOOL       45
 
 '----------------------------------------------------------------------------
 ' Table type defines, returned by TableInfo() for TAB_INFO_TYPE
@@ -1109,6 +1227,14 @@ Define TAB_TYPE_WMS                             6
 Define TAB_TYPE_WFS                             7
 Define TAB_TYPE_FME                             8
 Define TAB_TYPE_TILESERVER                      9
+
+'----------------------------------------------------------------------------
+' Defines used in LibraryServiceInfo function for what information to return.
+'----------------------------------------------------------------------------
+Define LIBSRVC_INFO_LIBSRVCMODE                 1
+Define LIBSRVC_INFO_LIBVERSION                  2
+Define LIBSRVC_INFO_DEFURLPATH                  3
+Define LIBSRVC_INFO_LISTCSWURL                  4
 
 '----------------------------------------------------------------------------
 ' TableListInfo() defines
@@ -1183,6 +1309,7 @@ Define WIN_INFO_STATE                           9
 Define WIN_INFO_TABLE                           10
 Define WIN_INFO_LEGENDS_MAP                     10
 Define WIN_INFO_ADORNEMNTS_MAP                  10
+Define WIN_INFO_ADORNMENTS_MAP                  10
 Define WIN_INFO_OPEN                            11
 Define WIN_INFO_WND                             12
 Define WIN_INFO_WINDOWID                        13
@@ -1221,6 +1348,7 @@ Define WIN_INFO_ENHANCED_RENDERING              45
 Define WIN_INFO_SMOOTH_TEXT                     46
 Define WIN_INFO_SMOOTH_IMAGE                    47
 Define WIN_INFO_SMOOTH_VECTOR                   48
+Define WIN_INFO_PARENT_LAYOUT                   49
 
 '----------------------------------------------------------------------------
 ' Window types, returned by WindowInfo() for WIN_INFO_TYPE
@@ -1234,7 +1362,8 @@ Define WIN_TOOLBAR                              25
 Define WIN_CART_LEGEND                          27
 Define WIN_3DMAP                                28
 Define WIN_ADORNMENT                            32
-Define WIN_LEGEND_DESIGNER				   35
+Define WIN_LEGEND_DESIGNER                      35
+Define WIN_LAYOUT_DESIGNER                      36
 Define WIN_HELP                                 1001
 Define WIN_MAPBASIC                             1002
 Define WIN_MESSAGE                              1003
@@ -1243,12 +1372,25 @@ Define WIN_INFO                                 1008
 Define WIN_LEGEND                               1009
 Define WIN_STATISTICS                           1010
 Define WIN_MAPINFO                              1011
+
 '----------------------------------------------------------------------------
 ' Version 2 window types no longer used in version 3 or later versions
 '----------------------------------------------------------------------------
 Define WIN_TOOLPICKER                           1004
 Define WIN_PENPICKER                            1005
 Define WIN_SYMBOLPICKER                         1006
+
+'----------------------------------------------------------------------------
+' Window types which can be used in Open/Close Window statements
+'----------------------------------------------------------------------------
+Define WIN_TABLE_LIST                           2001
+Define WIN_LAYER_CONTROL                        2002
+Define WIN_MOVE_MAP_TO                          2003
+Define WIN_WORKSPACE_EXPLORER                   2004
+Define WIN_WINDOW_LIST                          2005
+Define WIN_TOOL_MANAGER                         2006
+Define WIN_TASK_MANAGER                         2007
+Define WIN_CONNECTION_LIST                      2008
 
 '----------------------------------------------------------------------------
 ' Window states, returned by WindowInfo() for WIN_INFO_STATE
@@ -1318,6 +1460,39 @@ Define OBJ_RECT                                 OBJ_TYPE_RECT
 Define OBJ_ROUNDRECT                            OBJ_TYPE_ROUNDRECT
 Define OBJ_TEXT                                 OBJ_TYPE_TEXT
 
+'----------------------------------------------------------------------------
+' Codes for AdornmentInfo function to get info about an adornment win
+'----------------------------------------------------------------------------
+Define ADORNMENT_INFO_TYPE                            1
+Define ADORNMENT_INFO_MAP_WINDOWID                    2
+Define ADORNMENT_INFO_IS_FIXED_POS                    3
+Define ADORNMENT_INFO_FIXED_POS_X                     4
+Define ADORNMENT_INFO_FIXED_POS_Y                     5
+Define ADORNMENT_INFO_FIXED_POS_UNITS                 6
+Define ADORNMENT_INFO_DOCKED_POS                      7
+Define ADORNMENT_INFO_DOCKED_OFFSET_X                 8
+Define ADORNMENT_INFO_DOCKED_OFFSET_Y                 9
+Define ADORNMENT_INFO_DOCKED_UNITS                   10
+Define ADORNMENT_INFO_BACKGROUND_PEN                 11
+Define ADORNMENT_INFO_BACKGROUND_BRUSH               12
+Define ADORNMENT_INFO_SB_TYPE                        20
+Define ADORNMENT_INFO_SB_MAP_UNITS                   21
+Define ADORNMENT_INFO_SB_PAPER_UNITS                 22
+Define ADORNMENT_INFO_SB_BAR_LENGTH                  23
+Define ADORNMENT_INFO_SB_BAR_DRAW_LEN                24
+Define ADORNMENT_INFO_SB_BAR_HEIGHT                  25
+Define ADORNMENT_INFO_SB_AUTO_SCALING                26
+Define ADORNMENT_INFO_SB_CARTO_SCALE                 27
+Define ADORNMENT_INFO_SB_BAR_PEN                     28
+Define ADORNMENT_INFO_SB_BAR_BRUSH                   29
+Define ADORNMENT_INFO_SB_BAR_FONT                    30
+Define ADORNMENT_INFO_SB_DISPLAY_SCALE               31
+Define ADORNMENT_INFO_SB_AUTOOFF_SCALE               32
+Define ADORNMENT_INFO_SB_AUTOON_SCALE                33
+Define ADORNMENT_INFO_SB_SCALE_STRING                34
+Define ADORNMENT_INFO_SB_CARTO_VALUE                 35
+Define ADORNMENT_INFO_SB_CARTO_STRING                36
+
 '============================================================================
 ' Codes used to position Adornments relative to mapper
 '============================================================================
@@ -1342,6 +1517,11 @@ Define SCALEBAR_INFO_BARTYPE_TICKBAR       3
 Define DATUMID_NAD27  62
 Define DATUMID_NAD83  74
 Define DATUMID_WGS84 104
+
+'============================================================================
+' Assiging nullptr to c# ref type will destory and allow GC to collect them.
+'============================================================================
+Define NULL_PTR      -1
 
 '============================================================================
 ' end of MAPBASIC.DEF

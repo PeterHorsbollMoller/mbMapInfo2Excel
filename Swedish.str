@@ -1,0 +1,38 @@
+[ADMIN]
+LANGUAGE=Swedish
+
+[STRINGS]
+1="Exportera &tabell till MS Excel..."
+2="Exportera aktivt tabell&fönster till MS Excel..."
+3="Exportera &kartfönster till MS Excel"
+4="&Betygsätt verktyget på Community Downloads"
+5="&Avsluta program"
+6="&Om..."
+
+7="Öppna en eller flera tabeller i MapInfos eget TAB-format!"
+8="Exportera tabell till MS Excel"
+9="Välj tabell att exportera"
+10="MS Excel exportfil"
+11="Exportera kolumnrubriker"
+12="Exportera"
+13="Stäng"
+
+14="Öppna ett tabellfönster innan du väljer denns funktion!"
+15="Gör ett tabellfönster till det aktiva fönstret innan du använder denna funktion!"
+16="Exportera data från tabellfönster till MS Excel"
+
+17="Ange sökväg och filnamn för den nya MS Excel-filen..."
+
+18="Excel-filen är öppen i programmet MS Excel: "
+19="Du behöver stänga den innan du fortsätter."
+20="Fortsätt"
+21="Avbryt"
+22="Excel-mallen finns inte:"
+23="Ett fel inträffade när Excel-filen skulle öppnas i MS Excel: "
+
+24="Ett fel inträffade när DDE-kanalen till MS Excel skulle öppnas."
+25="Se till att din Excel-mall innehåller ett arbetsblad med namnet: "
+
+26="Du behöver först exportera en tabell till MS Excel innan du kan exportera ett kartfönster!"
+27="Ett kartfönster behöver vara öppet innan du kan exportera det till MS Excel"
+28="Den fil som senast användes i MS Excel är inte längre öppen."

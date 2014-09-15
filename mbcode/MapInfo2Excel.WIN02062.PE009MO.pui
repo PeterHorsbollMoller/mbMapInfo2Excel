@@ -1,16 +1,16 @@
 [Open Files]
 Active File Display Mode=3
-Active File Index=0
-Open File Line0=0
+Active File Index=1
+Open File Line0=4156
 Open File Line1=0
 Open File Line2=0
 Open File Line3=0
-Open File Pos0=448
-Open File Pos1=337
+Open File Pos0=3011
+Open File Pos1=40
 Open File Pos2=1276
 Open File Pos3=2269
-Open File Window Pos0=2,3,-1,-1,-8,-30,150,150,1415,598
-Open File Window Pos1=0,1,-1,-1,-8,-30,125,125,1386,569
+Open File Window Pos0=0,1,-1,-1,-8,-30,150,150,1415,598
+Open File Window Pos1=2,3,-1,-1,-8,-30,125,125,1386,569
 Open File Window Pos2=0,1,-1,-1,-8,-30,100,100,1642,555
 Open File Window Pos3=0,1,-1,-1,-8,-30,250,250,1289,805
 Open File0=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\mbcode\MI2ExcelMENU.mb
@@ -21,4 +21,4 @@ Open File4=
 
 [Project Information]
 Project Start=DD07060003000C0010000B001400000028
-Working Time=954450
+Working Time=1053000

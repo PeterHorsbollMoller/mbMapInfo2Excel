@@ -14,7 +14,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.70.1"
+Define xVersion 		"1.70.2"
 Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
@@ -87,6 +87,9 @@ Sub Main
 
 OnError GoTo ErrorOccured
 
+	'***Enabling Debug if file exists
+	Call DEBUGEnableByFile(FILE_DBG)
+
 	'***Initializing ApplicationInfo
 	Call PRGISetApplicationName(xProgram)
 	Call PRGISetApplicationVersion(xVersion)
@@ -101,10 +104,8 @@ OnError GoTo ErrorOccured
 
 	Call MENUReadConfigFile
 
+	Call DEBUGPrint("PRGILoadLanguageStrings(" & msLanguage & ")")
 	Call PRGILoadLanguageStrings(msLanguage)
-
-	'***Enabling Debug if file exists
-	Call DEBUGEnableByFile(FILE_DBG)
 
 	Create Menu xProgramMenu As
 		RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
@@ -242,7 +243,7 @@ OnError GoTo ErrorOccured
 
 	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
 
-	Print "PRGIGetApplicationLanguage() = " & PRGIGetApplicationLanguageName()
+	Call DEBUGPrint("PRGIGetApplicationLanguage() = " & PRGIGetApplicationLanguageName())
 	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE", PRGIGetApplicationLanguageName())
 
 	Exit Sub
@@ -296,7 +297,7 @@ Sub MENUGoToCommunityDownloads
 
 OnError GoTo ErrorOccured
 
-	Call FILELaunch("http://communitydownloads.pbinsight.com")
+	Call FILELaunch("http://communitydownloads.pbinsight.com/code-exchange/download/mapinfo2excel")
 	Exit Sub
 '-------------------------
 ErrorOccured:
@@ -350,28 +351,28 @@ OnError GoTo ErrorOccured
 	Dialog
 		Title  RESSTRNGGetString(STR_EXPORT_TABLE_TO_XLS)
 
-		Control StaticText		Position 5,5	Width 200
+		Control StaticText		Position 5,5	Width 300
 			Title  RESSTRNGGetString(STR_SELECT_TABLE_TO_EXPORT)
-		Control Listbox		Position 5,15	Width 200		Height 100	ID CTRL_LST_TABLES
+		Control Listbox		Position 5,15	Width 300		Height 100	ID CTRL_LST_TABLES
 			Title From Variable marrTables
 			Value 1
 
-		Control StaticText		Position 5,120	Width 200
+		Control StaticText		Position 5,120	Width 300
 			Title  RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
-		Control EditText		Position 5,130	Width 190					ID CTRL_TXT_OUTPUT_FILE
+		Control EditText		Position 5,130	Width 290					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
-		Control Button			Position 195,130		Height 12	Width 10
+		Control Button			Position 295,130		Height 12	Width 10
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,145	Width 80					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,145	Width 180					ID CTRL_CHK_EXPORT_TITLES
 			Title  RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 
-		Control OKButton		Position 120,145	Width 40
+		Control OKButton		Position 220,145	Width 40
 			Title  RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportTableXLS_OKButton
-		Control CancelButton	Position 165,145	Width 40
+		Control CancelButton	Position 265,145	Width 40
 			Title  RESSTRNGGetString(STR_CLOSE)
 
 	Exit Sub
@@ -445,23 +446,23 @@ OnError GoTo ErrorOccured
 	Dialog
 		Title RESSTRNGGetString(STR_EXPORT_BROWSER_DATA_TO_XLS)
 
-		Control StaticText		Position 5,5	Width 200
+		Control StaticText		Position 5,5	Width 300
 			Title RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
-		Control EditText		Position 5,15	Width 190					ID CTRL_TXT_OUTPUT_FILE
+		Control EditText		Position 5,15	Width 290					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
-		Control Button			Position 195,15		Height 12	Width 10
+		Control Button			Position 295,15		Height 12	Width 10
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,30	Width 80					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,30	Width 180					ID CTRL_CHK_EXPORT_TITLES
 			Title RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 			Value mbExportTitles
 
-		Control OKButton		Position 120,30	Width 40
+		Control OKButton		Position 220,30	Width 40
 			Title RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportBrowserData_OKButton
-		Control CancelButton	Position 165,30	Width 40
+		Control CancelButton	Position 265,30	Width 40
 			Title RESSTRNGGetString(STR_CLOSE)
 
 	Exit Sub

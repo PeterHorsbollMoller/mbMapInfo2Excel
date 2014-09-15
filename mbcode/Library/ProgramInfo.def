@@ -6,12 +6,24 @@
 '					- PRGILoadLanguageStrings: which will discover existing language files in the application directory and pick the one matching the language given thru the parameter
 '					Changed the default URL_PBBI_WEBSITE to www.mapinfo.com
 '					The module now also requires these modules ARRAYLib and RESSTRNGLib
+'15-08-2014 13:16:14	Added support for new features that will come with MapInfo Pro 12.5 x64:
+'						- Sub PRGISetDescription(...)
+'						- Function PRGIGetDescription() As String
+'						- Sub PRGISetApplicationImageUri(...)
+'						- Function PRGIGetApplicationImageUri() As String
+'					The procedures/functions below can be called by the interface for MapBasic application in MI Pro in the Tools Windows
+'						- Sub AddIn_About
+'						- Sub AddIn_Help
+'						- Function AddIn_Name() As String
+'						- Function AddIn_Description() As String
+'						- Function AddIn_Version() As String
+'						- Function AddIn_ImageUri() As String
 '********************************************************
 
 'When using this module, make sure to set these values in your main module
 '
-'Define xProgram 		"Nodes Displayer"
-'Define xVersion 		"1.0.0"
+'Define xProgram 	"Nodes Displayer"
+'Define xVersion 	"1.0.0"
 'Define xYear		"2011"
 '
 '	Call PRGISetApplicationName(xProgram)
@@ -31,6 +43,10 @@ Declare Function PRGIGetApplicationCopyrightYear() As String
 'Set and get the Copyright Company of the Application, default is "Pitney Bowes Software"
 Declare Sub PRGISetCopyrightCompany(ByVal sName As String)
 Declare Function PRGIGetCopyrightCompany() As String
+'Set and get the Description of the Application, default is [NAME] + " " [VERSION] + " Developed by " + [DEVELOPEDBY]
+Declare Sub PRGISetDescription(ByVal sDescription As String)
+Declare Function PRGIGetDescription() As String
+
 
 'Set and get the Name of the developer of the Application, default is "Pitney Bowes Software"
 Declare Sub PRGISetApplicationDevelopedBy(ByVal sName As String)
@@ -45,6 +61,10 @@ Declare Function PRGIGetWebPageName() As String
 'Set and get the URL to the Web Page, default is "www.pbinsight.com"
 Declare Sub PRGISetWebPageURL(ByVal sURL As String)
 Declare Function PRGIGetWebPageURL() As String
+
+'Set and get the Application Image
+Declare Sub PRGISetApplicationImageUri(ByVal sImageUri As String)
+Declare Function PRGIGetApplicationImageUri() As String
 
 'Set and get the help file for the application, can be PDF, DOC, TXT or any file Windows can "run"
 Declare Sub PRGISetApplicationHelpFile(ByVal sHelpFile As String)
@@ -62,3 +82,11 @@ Declare Sub PRGILoadLanguageStrings(ByVal sLanguage As String)
 Declare Sub PRGIAboutbox
 'Launches the help file, if any specified
 Declare Sub PRGILaunchHelpFile
+
+'**Supported by MapInfo Professional 12.5 x64 on onwards
+Declare Sub AddIn_About
+Declare Sub AddIn_Help
+Declare Function AddIn_Name() As String
+Declare Function AddIn_Description() As String
+Declare Function AddIn_Version() As String
+Declare Function AddIn_ImageUri() As String

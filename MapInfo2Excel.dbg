@@ -327,3 +327,36 @@
 11:32:35 Exported Map Window (1) into file C:\Users\pe009mo\Documents\MapWindow.jpg
 11:32:35 EXCELDDEOpenChannel to :Maps
 11:32:35 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20131211 - 11.31.37.xlsm
+16:14:36 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+16:14:36 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+11:44:23 PRGIGetApplicationLanguage() = Dansk
+11:45:00 PRGIGetApplicationLanguage() = Dansk
+11:45:38 PRGIGetApplicationLanguage() = Dansk
+11:45:44 PRGILoadLanguageStrings(Dansk)
+11:45:44 Number of language files found: 0
+11:45:44 Searching for language files in: 'D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\'
+11:45:44 Found 8 string files!
+11:45:44    1 Dansk
+11:45:44    2 Nederlands
+11:45:44    3 English
+11:45:44    4 Finnish
+11:45:44    5 Français
+11:45:44    6 Italian
+11:45:44    7 Spanish
+11:45:44    8 Swedish
+11:48:59 PRGIGetApplicationLanguage() = Dansk
+11:49:13 PRGILoadLanguageStrings(Dansk)
+11:49:13 Number of language files found: 0
+11:49:13 Searching for language files in: 'D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\'
+11:49:13 Found 8 string files!
+11:49:13    1 Dansk
+11:49:13    2 Nederlands
+11:49:13    3 English
+11:49:13    4 Finnish
+11:49:13    5 Français
+11:49:13    6 Italian
+11:49:13    7 Spanish
+11:49:13    8 Swedish
+11:53:55 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+11:53:55 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+14:00:40 PRGIGetApplicationLanguage() = Dansk
