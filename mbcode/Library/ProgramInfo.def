@@ -18,6 +18,7 @@
 '						- Function AddIn_Description() As String
 '						- Function AddIn_Version() As String
 '						- Function AddIn_ImageUri() As String
+'13-09-2014 13:24:51	Fixed an error in PRGIAbout_OnLoad so that languages now are shown in the About dialog
 '********************************************************
 
 'When using this module, make sure to set these values in your main module

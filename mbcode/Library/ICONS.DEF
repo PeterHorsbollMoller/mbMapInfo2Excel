@@ -1,5 +1,6 @@
+
 '============================================================================
-' MapInfo version 10.5 - Icons, DrawModes, and Cursors
+' MapInfo version 12.0 - Icons, DrawModes, and Cursors
 '----------------------------------------------------------------------------
 ' This file contains defines useful when programming in the MapBasic
 ' language.
@@ -51,6 +52,50 @@ define MI_CURSOR_MOVE            161
 define MI_CURSOR_ACT_HAND        162
 define MI_CURSOR_ACT_HAND2       163
 define MI_CURSOR_LRG_CROSSHAIR   164
+define MI_CURSOR_TINY_CROSSHAIR  165
+define MI_CURSOR_ADORNMENT       166
+define MI_CURSOR_ADORNMENT_MOVE  167
+
+
+define MI_CURSOR_FINGER_LEFT_1BPP     188
+define MI_CURSOR_ZOOM_IN_1BPP         189
+define MI_CURSOR_ZOOM_OUT_1BPP        190
+define MI_CURSOR_DRAG_OBJ_1BPP        191
+define MI_CURSOR_GRABBER_1BPP         192
+define MI_CURSOR_CHANGE_WIDTH_1BPP    193
+define MI_CURSOR_FINGER_UP_1BPP       194
+define MI_CURSOR_IBEAM_CROSS_1BPP     195
+define MI_CURSOR_HELP_1BPP            197
+define MI_CURSOR_CROSSHAIR_1BPP       198
+define MI_CURSOR_NODROP_1BPP          199
+define MI_CURSOR_DRAG_LAYER_1BPP      200
+define MI_CURSOR_DRAG_LAYERS_1BPP     201
+define MI_CURSOR_BEGIN_DRAGNDROP_1BPP 202
+define MI_CURSOR_DOING_DRAGNDROP_1BPP 203
+define MI_CURSOR_DRAGNDROP_COPY_1BPP  204
+define MI_CURSOR_DRAGNDROP_LINK_1BPP  205
+define MI_CURSOR_DRAGNDROP_MOVE_1BPP  206
+define MI_CURSOR_DRAGNDROP_NONE_1BPP  207
+define MI_CURSOR_MOUSESCROLL_N_1BPP   208
+define MI_CURSOR_MOUSESCROLL_NE_1BPP  209
+define MI_CURSOR_MOUSESCROLL_E_1BPP   210
+define MI_CURSOR_MOUSESCROLL_SE_1BPP  211
+define MI_CURSOR_MOUSESCROLL_S_1BPP   212
+define MI_CURSOR_MOUSESCROLL_SW_1BPP  213
+define MI_CURSOR_MOUSESCROLL_W_1BPP   214
+define MI_CURSOR_MOUSESCROLL_NW_1BPP  215
+define MI_CURSOR_MOUSESCROLL_CTR_1BPP 216
+define MI_CURSOR_SIZE_NESW_1BPP       217
+define MI_CURSOR_SIZE_NS_1BPP         218
+define MI_CURSOR_SIZE_NWSE_1BPP       219 
+define MI_CURSOR_SIZE_WE_1BPP         220
+define MI_CURSOR_MOVE_1BPP            221
+define MI_CURSOR_ACT_HAND_1BPP        222
+define MI_CURSOR_ACT_HAND2_1BPP       223
+define MI_CURSOR_LRG_CROSSHAIR_1BPP   224
+define MI_CURSOR_TINY_CROSSHAIR_1BPP  225
+define MI_CURSOR_ADORNMENT_1BPP       226
+define MI_CURSOR_ADORNMENT_MOVE_1BPP  227
 
 '----------------------------------------------------------------------------
 ' Defines for different DrawModes for the custom tool.
@@ -445,6 +490,20 @@ define MI_ICON_CREATE_CATALOG_RECORD 352
 define MI_ICON_ADD_BASEMAP           353
 define MI_ICON_ADD_FAVORITE          354
 define MI_ICON_TABLE_LIST            355
+define MI_ICON_BING_ROADS            356
+define MI_ICON_BING_MOVE_MAP_TO      357
+define MI_ICON_EDIT_METADATA_REC     358
+define MI_ICON_FILTER                359
+define MI_ICON_SORT                  360
+define MI_ICON_VIEW_METADATA_REC     361
+define MI_ICON_VINTAGE_METADATA      362
+define MI_ICON_ADDTOLIBRARY          363
+define MI_ICON_OSM_ROADS             364
+define MI_ICON_NAMED_VIEWS           365
+define MI_ICON_SORT_DESC             366
+define MI_ICON_SORT_CLEAR            367
+define MI_ICON_NEW_ACTIVE_LAYOUT     368
+
 
 ' ----------------------------------------------------
 ' New Icon Ids

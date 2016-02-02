@@ -200,6 +200,7 @@ OnError GoTo ErrorOccured
 EXCELIsRunning = FALSE
 
 	nChannel = EXCELDDEOpenChannelNoWait("System")
+	Call DEBUGPrint("Back from 'EXCELDDEOpenChannelNoWait'")
 	If nChannel <> 0 Then
 		Call EXCELDDECloseChannel(nChannel)
 
@@ -230,6 +231,7 @@ OnError GoTo ErrorOccured
 EXCELIsFileOpen = FALSE
 
 	nChannel = EXCELDDEOpenChannelNoWait(sFile)
+	Call DEBUGPrint("Back from 'EXCELDDEOpenChannelNoWait'")
 	If nChannel <> 0 Then
 		Call EXCELDDECloseChannel(nChannel)
 
@@ -358,18 +360,21 @@ EXCELDDEOpenChannelNoWait = 0
 '-------------------------
 OpeningChannel:
 	OnError GoTo ErrorOpeningChannel
+	Call DEBUGPrint("   DDEInitiate('Excel', " & sTopic & ")")
 	nChannel	= DDEInitiate("Excel", sTopic)
 
 	OnError GoTo ErrorOccured
 
-'	Call DEBUGPrint("   nChannel=" & nChannel)
+	Call DEBUGPrint("   nChannel=" & nChannel)
 	EXCELDDEOpenChannelNoWait = nChannel
 
 	Exit Function
 '-------------------------
 ErrorOpeningChannel:
-	Call DEBUGPrint("   EXCELDDEOpenChannelNoWait:" & Err() & ": " & Error$())
-
+	Call ERRCreate(Err(), Error$(), "EXCELDDEOpenChannelNoWait: Topic: " & sTopic)
+'	Call DEBUGPrint("   EXCELDDEOpenChannelNoWait: " & ERRGetLatestDescription(FALSE))
+	Print "   EXCELDDEOpenChannelNoWait: " & ERRGetLatestDescription(FALSE)
+	Call DEBUGPrint("   Not able to access the program")
 	Exit Function
 '-------------------------
 ErrorOccured:
@@ -395,7 +400,7 @@ OnError GoTo ErrorOccured
 '-------------------------
 ErrorOccured:
 	Call ERRCreate(Err(), Error$(), "EXCELDDECloseChannel")
-'	Call ERRPrint()
+	Call ERRShow()
 
 End Sub
 

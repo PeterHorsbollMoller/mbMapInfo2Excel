@@ -9,6 +9,9 @@
 '						- ERRDump
 '						- ERRDumpToFile
 '					- Now an error also Contains the Date and time of when it occured
+'09-10-2014 12:01:08	Peter Møller Added:
+'						- ERRGetErrorNo(...) As Integer
+'						- ERRGetLatestErrorNo() As Integer
 '*****************************************************************************************************************
 
 '**Requires MapInfo Pro 4.0
@@ -19,10 +22,14 @@ Declare Sub ERRCreate(	  ByVal nErrorNo As Integer		'Error number (could be the 
 				, ByVal sErrorDescription As String	'Error Description, some more details on the error
 				)
 
+'**Returns a specific error code
+Declare Function ERRGetErrorNo(ByVal nErrorItem As Integer) As Integer
 '**Returns a simple error message, bOnMultipleLines defines if it can be on multiple lines, good for dialogs/notes
 Declare Function ERRGetDescription(ByVal nErrorItem As Integer, ByVal bOnMultipleLines As Logical) As String
 '**Returns a full error message (including date and time), bOnMultipleLines defines if it can be on multiple lines, good for dialogs/notes
 Declare Function ERRGetFullDescription(ByVal nErrorItem As Integer, ByVal bOnMultipleLines As Logical) As String
+'**Returns the latest/last error code
+Declare Function ERRGetLatestErrorNo() As Integer
 '**Returns a simple error message, bOnMultipleLines defines if it can be on multiple lines, good for dialogs/notes
 Declare Function ERRGetLatestDescription(ByVal bOnMultipleLines As Logical) As String
 '**Returns a full error message (including date and time), bOnMultipleLines defines if it can be on multiple lines, good for dialogs/notes

@@ -1,5 +1,5 @@
 '============================================================================
-' MapInfo version 10.5 - Menu Item Definitions
+' MapInfo version 12.5 - Menu Item Definitions
 '----------------------------------------------------------------------------
 ' This file contains defines useful when programming in the MapBasic
 ' language.  The definitions in this file describe the standard MapInfo
@@ -21,6 +21,10 @@ Define M_FILE_OPEN_ODBC_CONN                   125
 Define M_FILE_OPEN_UNIVERSAL_DATA              126
 Define M_FILE_OPEN_BING_AERIAL                 128
 Define M_FILE_OPEN_BING_HYBRID                 129
+Define M_FILE_OPEN_BING_ROADS                  130
+'NOTE: M_FILE_OPEN_OSM_ROADS  was deprecated in 12.0
+'Define M_FILE_OPEN_OSM_ROADS                  131
+Define M_FILE_OPEN_LASTDLG                     132
 Define M_FILE_CLOSE                            103
 Define M_FILE_CLOSE_ALL                        104
 Define M_FILE_CLOSE_ODBC                       124
@@ -54,6 +58,7 @@ Define M_EDIT_GETINFO                          207
 Define M_TOOLS_CRYSTAL_REPORTS_NEW             1802
 Define M_TOOLS_CRYSTAL_REPORTS_OPEN            1803
 Define M_TOOLS_RUN                             110
+Define M_MBTOOL_GET_MB_UTILITIES               1811
 Define M_TOOLS_TOOL_MANAGER                    1801
 
 '----------------------------------------------------------------------------
@@ -138,7 +143,6 @@ Define M_TABLE_WFS_REFRESH                     422
 Define M_TABLE_WFS_PROPS                       423
 Define M_TABLE_UNIVERSAL_DATA_REFRESH          426
 
-
 '----------------------------------------------------------------------------
 ' Options and Preferences menus
 '----------------------------------------------------------------------------
@@ -166,6 +170,20 @@ Define M_EDIT_PREFERENCES_STYLES               218
 Define M_EDIT_PREFERENCES_IMAGE_PROC           219
 Define M_EDIT_PREFERENCES_WEBSERVICES          220
 Define M_EDIT_PREFERENCES_LAYOUT               221
+Define M_EDIT_PREFERENCES_BROWSER              222
+Define M_EDIT_PREFERENCES_NOTIFICATIONS        223
+Define M_EDIT_PREFERENCES_PERFORMANCE          224
+Define M_EDIT_PREFERENCES_WORKSPACE            225
+Define M_EDIT_PREFERENCES_MAPBASIC             226
+Define M_EDIT_PREFERENCES_EXPLORER             227
+Define M_EDIT_PREFERENCES_WINDOWSTATE          228
+Define M_EDIT_PREFERENCES_TASKMANAGER          229
+Define M_EDIT_PREFERENCES_WINDOWLIST           230
+Define M_EDIT_PREFERENCE_RESETEXPLORERHEIGHTS  231
+Define M_EDIT_PREFERENCE_SAVERIBBONSTATE       232
+Define M_EDIT_PREFERENCE_DELETERIBBONSTATE     233
+Define M_EDIT_PREFERENCE_SAVETOOLWINDOWSTATE   234
+Define M_EDIT_PREFERENCE_DELETETOOLWINDOWSTATE 235
 
 '----------------------------------------------------------------------------
 ' Window menu
@@ -174,15 +192,16 @@ Define M_WINDOW_BROWSE                         601
 Define M_WINDOW_MAP                            602
 Define M_WINDOW_GRAPH                          603
 Define M_WINDOW_LAYOUT                         604
+Define M_WINDOW_LAYOUT_DESIGNER                620
 Define M_WINDOW_REDISTRICT                     615
 Define M_WINDOW_REDRAW                         610
 Define M_WINDOW_TILE                           611
 Define M_WINDOW_CASCADE                        612
 Define M_WINDOW_ARRANGEICONS                   613
 Define M_WINDOW_MORE                           614
-Define M_WINDOW_FIRST                          620
+Define M_WINDOW_FIRST                          625
 ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-' Note: the 2nd through 80th windows can be accessed as (M_WINDOW_FIRST+i-1)
+' Note: the 2nd through 75th windows can be accessed as (M_WINDOW_FIRST+i-1)
 ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 '----------------------------------------------------------------------------
@@ -194,16 +213,20 @@ Define M_HELP_CONTENTS                         1202
 Define M_HELP_SEARCH                           1203
 Define M_HELP_MAPINFO_3DGRAPH_HELP             1214
 Define M_HELP_MAPINFO_WWW                      1210
-Define M_HELP_MAPINFO_CONNECT_SERVICES         1215
+' NOTE: M_HELP_MAPINFO_CONNECT_SERVICES was deprecated in 12.0
+' Define M_HELP_MAPINFO_CONNECT_SERVICES         1215
 Define M_HELP_MAPINFO_WWW_TUTORIAL             1213
 Define M_HELP_MAPINFO_WWW_STORE                1211
 Define M_HELP_CONNECT_MIFORUM                  1209
 Define M_HELP_CHECK_FOR_UPDATE                 1212
 Define M_HELP_MAPINFO_PRODUCT_FEEDBACK         1219
+Define M_HELP_BING_TERMS_OF_USE                1220
+Define M_HELP_MAPINFO_NEWSFEED                 1221
 
 Define M_HELP_MAPINFO_RETURN_LICENSE           1216
 Define M_HELP_MAPINFO_BORROW_LICENSE           1217
 Define M_HELP_MAPINFO_RETURN_BORROWED_LICENSE  1218
+Define M_HELP_USER_BING_KEY                    1222
 
 Define M_HELP_ABOUT                            1205
 
@@ -211,20 +234,38 @@ Define M_HELP_USE_HELP                         1204
 Define M_HELP_HELPMODE                         1206
 Define M_HELP_TECHSUPPORT                      1208
 
-
-
 '----------------------------------------------------------------------------
 ' Browse menu
 '----------------------------------------------------------------------------
 Define M_BROWSE_PICK_FIELDS                    704
 Define M_BROWSE_OPTIONS                        703
+Define M_BROWSE_SORT                           710
+Define M_BROWSE_TOOLBAR                        711
+Define M_BROWSE_HOTLINK_OPTIONS                714
+
+' Browse window context menu
+Define M_BROWSE_SORT_ASCENDING                 2702
+Define M_BROWSE_SORT_DESCENDING                2703
+Define M_BROWSE_FILTER                         2704
+Define M_BROWSE_CLEAR_FILTER                   2705
+
+' Browse window Sort/Filter menu (via toolbar)
+Define M_BROWSE_REAPPLY_SORT_FILTERS           2709
+Define M_BROWSE_TOGGLE_SORT_FILTERS            2706
+Define M_BROWSE_CLEAR_SORT_FILTERS             2710
+Define M_BROWSE_CLEAR_FILTERS                  2707
+Define M_BROWSE_CLEAR_SORT                     2701
+Define M_BROWSE_CREATE_QUERY                   2711
+
+' Browse window Selection menu (via toolbar)
+Define M_BROWSE_SELECT_ALL_IN_BROWSER          2708
 
 '----------------------------------------------------------------------------
 ' Map menu
 '----------------------------------------------------------------------------
-' Open Layer Control in a window: 
+' Open Layer Control in a window:
 Define M_MAP_LAYER_CONTROL                     822
-' Open Layer Control in a dialog box: 
+' Open Layer Control in a dialog box:
 Define M_MAP_LAYER_CONTROL_DIALOG              801
 Define M_MAP_CREATE_3DMAP                      817
 Define M_MAP_CREATE_PRISMMAP                   818
@@ -243,13 +284,32 @@ Define M_MAP_SET_CLIP_REGION                   812
 Define M_MAP_CLIP_REGION_ONOFF                 813
 Define M_MAP_SETUPDIGITIZER                    803
 Define M_MAP_OPTIONS                           802
+Define M_MAP_MOVE_MAP_TO                       825
+Define M_MAP_CREATE_LEGEND_PREF                826
+Define M_MAP_CREATE_LEGEND_DESIGNER            827
+Define M_VIEW_ZOOM_TO_TILESERVER_LAYER         828
+Define M_VIEW_WORKSPACE_EXPLORER               829
+Define M_VIEW_WINDOW_LIST                      830
+Define M_VIEW_TOOL_MANAGER                     831
+Define M_VIEW_TASK_MANAGER                     832
+Define M_VIEW_CONNECTION_LIST                  833
+Define M_VIEW_INFO_WINDOW                      834
+Define M_VIEW_MESSAGE_WINDOW                   835
+Define M_VIEW_STATISTICS_WINDOW                836
+Define M_VIEW_RULER_WINDOW                     837
+Define M_VIEW_LOCK_SCALE                       838
+Define M_VIEW_SELECTABLE_LABELS                839
+Define M_VIEW_ENTIRE_MAP                       840
+Define M_VIEW_ZOOM_TO_SELECTED_OBJECTS         841
+Define M_VIEW_SNAP_TO_NODE                     842
+Define M_VIEW_SUSPEND_REDRAW                   843
+Define M_VIEW_LEGEND_WINDOW                    844
 
 ' Map window context menu
 Define M_MAP_AUTOSCROLL_ONOFF                  815
 Define M_MAP_VIEW_ENTIRE_SELECTION             819
 Define M_MAP_SELECT_ALL_FROM_SELECTION         820
 Define M_MAP_MAKE_SELECTION_EDITABLE           821
-
 
 '----------------------------------------------------------------------------
 ' Layout menu
@@ -264,6 +324,16 @@ Define M_LAYOUT_ALIGN                          908
 Define M_LAYOUT_DROPSHADOWS                    909
 Define M_LAYOUT_DISPLAYOPTIONS                 901
 Define M_LAYOUT_AUTOSCROLL_ONOFF               910
+Define M_LAYOUT_ALIGN_LEFT                     911
+Define M_LAYOUT_ALIGN_RIGHT                    912
+Define M_LAYOUT_ALIGN_TOP                      913
+Define M_LAYOUT_ALIGN_BOTTOM                   914
+
+'----------------------------------------------------------------------------
+' Layout Designer menu
+'----------------------------------------------------------------------------
+Define M_LAYOUT_NEW_MAP                       2901
+Define M_LAYOUT_NEW_BROWSER                   2902
 
 '----------------------------------------------------------------------------
 ' Graph menu
@@ -358,7 +428,7 @@ Define M_DBMS_OPEN_ODBC                        116
 '----------------------------------------------------------------------------
 ' Adornment context menu items
 '----------------------------------------------------------------------------
-Define M_ADORNMENT_PROPERTIES	               2401
+Define M_ADORNMENT_PROPERTIES                  2401
 Define M_ADORNMENT_REMOVE                      2402
 
 '----------------------------------------------------------------------------
@@ -376,11 +446,17 @@ Define M_LC_UNGROUP                            2509
 Define M_LC_ADDLAYERS                          2510
 Define M_LC_ADD_STYLE_OVERRIDE                 2511
 Define M_LC_ADD_LABEL_OVERRIDE                 2512
-Define M_LC_DISPLAY_OVERRIDE_PROP              2513	
-Define M_LC_LABEL_OVERRIDE_PROP                2514	
-Define M_LC_SPLIT_OVERRIDE                     2515	
-Define M_LC_REMOVE_OVERRIDE                    2516	
-Define M_LC_BROWSE_TABLE	                   2517
+Define M_LC_DISPLAY_OVERRIDE_PROP              2513
+Define M_LC_LABEL_OVERRIDE_PROP                2514
+Define M_LC_SPLIT_OVERRIDE                     2515
+Define M_LC_REMOVE_OVERRIDE                    2516
+Define M_LC_BROWSE_TABLE                       2517
+Define M_LC_VIEW_META_DATA                     2518
+Define M_LC_ADD_TO_LIBRARY                     2519
+Define M_LC_ZOOM_TO_TILESERVER                 2520
+Define M_LC_CLEAR_CUSTOM_LABELS                2521
+Define M_LC_LABEL_PRIORITIES                   2522
+Define M_LC_SELECT_ALL_FROM_LAYER              2523
 
 '----------------------------------------------------------------------------
 ' Table List Window context menu items
@@ -394,6 +470,30 @@ Define M_TLV_TABLE_STRUCTURE                   2606
 Define M_TLV_CREATE_POINTS                     2607
 Define M_TLV_UPDATE_COLUMN                     2608
 Define M_TLV_CLOSE_TABLE                       2609
+Define M_TLV_VIEW_META_DATA                    2610
+Define M_TLV_ADD_TO_LIBRARY                    2611
+Define M_TLV_COMPARE_STRUCTURE                 2612
+
+'----------------------------------------------------------------------------
+' Legend Designer menu items
+'----------------------------------------------------------------------------
+Define M_LEGEND_DESIGNER_HIDE_GUIDELINES       2801
+Define M_LEGEND_DESIGNER_REMOVE_GUIDELINES     2802
+Define M_LEGEND_DESIGNER_REMOVE_FRAMES         2803
+Define M_LEGEND_DESIGNER_PROPERTIES            2804
+Define M_LEGEND_DESIGNER_REFRESH               2805
+Define M_LEGEND_DESIGNER_ADD_FRAMES            2806
+Define M_LEGEND_DESIGNER_ADD_TEXTFRAME         2807
+Define M_LEGEND_DESIGNER_MODIFY_THEME          2808
+Define M_LEGEND_DESIGNER_TOGGLE_GRID           2809
+Define M_LEGEND_DESIGNER_SNAP_TO_GRID          2810
+Define M_LEGEND_DESIGNER_HORIZ_GUIDELINE       2811
+Define M_LEGEND_DESIGNER_VERT_GUIDELINE        2812
+Define M_LEGEND_DESIGNER_SNAP_TOP              2813
+Define M_LEGEND_DESIGNER_SNAP_BOTTOM           2814
+Define M_LEGEND_DESIGNER_SNAP_LEFT             2815
+Define M_LEGEND_DESIGNER_SNAP_RIGHT            2816
+Define M_LEGEND_DESIGNER_QUICK_REFRESH         2817
 
 '----------------------------------------------------------------------------
 ' Menu and ButtonPad items that do not appear in the standard menus
@@ -490,6 +590,12 @@ Define M_ORACLE_TOOLS                           41
 Define M_TAB_MAINTENANCE                        42
 Define M_TAB_RASTER                             43
 Define M_LICENSING                              44
+Define M_TILESERVER                             45
+Define M_SHORTCUT_BROWSER_SORTFILTER            47
+Define M_SHORTCUT_BROWSER_SELECT                48
+Define M_LEGEND_DESIGNER                        49
+Define M_SHORTCUT_LEGEND_DESIGNER               50
+Define M_LAYOUT_DESIGNER                        51
 
 '----------------------------------------------------------------------------
 ' Buttonpad defines - these represent the predefined toolbars, and can

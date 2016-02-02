@@ -1349,6 +1349,8 @@ Define WIN_INFO_SMOOTH_TEXT                     46
 Define WIN_INFO_SMOOTH_IMAGE                    47
 Define WIN_INFO_SMOOTH_VECTOR                   48
 Define WIN_INFO_PARENT_LAYOUT                   49
+Define WIN_INFO_CLIENTWIDTH                     50
+Define WIN_INFO_CLIENTHEIGHT                    51
 
 '----------------------------------------------------------------------------
 ' Window types, returned by WindowInfo() for WIN_INFO_TYPE
@@ -1398,6 +1400,10 @@ Define WIN_CONNECTION_LIST                      2008
 Define WIN_STATE_NORMAL                         0
 Define WIN_STATE_MINIMIZED                      1
 Define WIN_STATE_MAXIMIZED                      2
+Define WIN_STATE_DOCKED                         3
+Define WIN_STATE_TABBED                         4
+Define WIN_STATE_AUTOHIDDEN                     5
+Define WIN_STATE_HIDDEN                         6
 
 '----------------------------------------------------------------------------
 ' Print orientation, returned by WindowInfo() for WIN_INFO_PRINTER_ORIENT
