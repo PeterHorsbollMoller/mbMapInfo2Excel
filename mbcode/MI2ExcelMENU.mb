@@ -14,8 +14,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.70.2"
-Define xYear			"2014"
+Define xVersion 		"1.8.2"
+Define xYear			"2017"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
@@ -29,6 +29,7 @@ Define					WORKSHEET_INPUT_MAPS	"Maps"
 Define CTRL_LST_TABLES		100
 Define CTRL_CHK_EXPORT_TITLES	200
 Define CTRL_TXT_OUTPUT_FILE	300
+Define CTRL_TXT_WAIT_TIME	400
 
 '-------------------------------------
 Include "Library\ProgramInfo.def"
@@ -245,6 +246,7 @@ OnError GoTo ErrorOccured
 
 	Call DEBUGPrint("PRGIGetApplicationLanguage() = " & PRGIGetApplicationLanguageName())
 	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE", PRGIGetApplicationLanguageName())
+	Call CONFIGWriteKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME", Str$(EXCELGetOpenExcelWaitTime()))
 
 	Exit Sub
 '-------------------------
@@ -261,7 +263,7 @@ End Sub
 '**********************************************************************************************''
 Sub MENUReadConfigFile
 
-Dim	sFile As String
+Dim	sFile, sValue As String
 
 OnError GoTo ErrorOccured
 
@@ -269,9 +271,17 @@ OnError GoTo ErrorOccured
 
 	If FileExists(sFile) Then
 		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
 	Else
 		sFile 		= ApplicationDirectory$() & FILE_INI
 		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
+	End If
+
+	If sValue = "" Then
+		Call EXCELSetOpenExcelWaitTime(500)
+	Else
+		Call EXCELSetOpenExcelWaitTime(Val(sValue))
 	End If
 
 '	mnLanguage	= ARRAYFindValueString(marrLanguages, sLanguage)
@@ -366,8 +376,15 @@ OnError GoTo ErrorOccured
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,145	Width 180					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,147	Width 110					ID CTRL_CHK_EXPORT_TITLES
 			Title  RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
+			Value mbExportTitles
+
+		Control StaticText		Position 120,147	Width 70
+			Title  RESSTRNGGetString(STR_WAIT_TIME_SECS)
+		Control EditText		Position 190,145	Width 20				ID CTRL_TXT_WAIT_TIME
+			Value FormatNumber$(EXCELGetOpenExcelWaitTime()/1000)
+
 
 		Control OKButton		Position 220,145	Width 40
 			Title  RESSTRNGGetString(STR_EXPORT)
@@ -399,6 +416,8 @@ OnError GoTo ErrorOccured
 	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
 	sTab			= marrTables(ReadControlValue(CTRL_LST_TABLES))
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
 	Call MENUExportTableViaCSV(sTab, mbExportTitles, sNewFile)
 '	Call MENUExportTableCSV(sTab, mbExportTitles, Left$(sNewFile, Len(sNewFile) - Len(FILEGetExtension(sNewFile))) & "csv")
@@ -455,9 +474,15 @@ OnError GoTo ErrorOccured
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,30	Width 180					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,32	Width 110					ID CTRL_CHK_EXPORT_TITLES
 			Title RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 			Value mbExportTitles
+
+		Control StaticText		Position 120,32	Width 70
+			Title  RESSTRNGGetString(STR_WAIT_TIME_SECS)
+		Control EditText		Position 190,30	Width 20				ID CTRL_TXT_WAIT_TIME
+			Value FormatNumber$(EXCELGetOpenExcelWaitTime()/1000)
+
 
 		Control OKButton		Position 220,30	Width 40
 			Title RESSTRNGGetString(STR_EXPORT)
@@ -486,6 +511,8 @@ OnError GoTo ErrorOccured
 
 	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
 	Create Query
 		From Window FrontWindow()
@@ -810,7 +837,6 @@ ErrorOccured:
 	End If
 
 End Sub
-
 
 '**********************************************************************************************''
 'Created by Peter Horsbøll Møller, Pitney Bowes Software

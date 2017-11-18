@@ -36,3 +36,5 @@ LANGUAGE=Finnish
 26="Vie ensin taulukko ennen kuin viet kartan!"
 27="Avaa karttaikkuna ennen kuin yrit‰t vied‰ sit‰ MS Exceliin"
 28="Viimeksi k‰ytetty MS Excel-tiedosto ei ole en‰‰ auki."
+
+29="Odotusaika, sec"

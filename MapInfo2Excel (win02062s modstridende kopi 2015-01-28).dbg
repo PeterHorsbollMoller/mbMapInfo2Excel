@@ -1,0 +1,323 @@
+08:03:37 Trying to open file: D:\Dropbox\3. MB_Kode\LSU Analysis\Rambøll LSU Analyse.xls
+08:03:45 Testing access to file in Excel
+08:03:45 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\LSU Analysis\Rambøll LSU Analyse.xls
+08:03:45 Saving table LOG_ANALYSIS
+08:03:45    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_9816\MapInfo2Excel_Dump.csv
+08:03:45 sCmd: Select FormatDate$(LOG_DATE) "LOG_DATE", LOG_DATE_STR "LOG_DATE_STR", Str$(UNIQUE_USERS) "UNIQUE_USERS", Str$(MAX_USERS) "MAX_USERS", Str$(MAX_USERS_0950) "MAX_USERS_0950", Str$(MAX_USERS_1000) "MAX_USERS_1000", Str$(MAX_USERS_1050) "MAX_USERS_1050", Str$(MAX_USERS_1100) "MAX_USERS_1100", Str$(MAX_USERS_1150) "MAX_USERS_1150", Str$(MAX_USERS_1200) "MAX_USERS_1200" From LOG_ANALYSIS Into __TO__EXPORT__CSV NoSelect
+08:03:45 Exporting to CSV file: 427 rows
+08:03:45 Export done
+08:03:45 EXCELDDEOpenChannel to :InputData
+08:03:45 Sending file name to Excel
+08:03:45 Running import macro in Excel
+08:03:45 EXCELDDEOpenChannel to :D:\Dropbox\3. MB_Kode\LSU Analysis\Rambøll LSU Analyse.xls
+08:03:46 Deleting CSV file
+08:13:13 PRGIGetApplicationLanguage() = English
+11:22:24 PRGILoadLanguageStrings(English)
+15:53:36 PRGIGetApplicationLanguage() = English
+09:04:08 PRGILoadLanguageStrings(English)
+11:24:14 PRGIGetApplicationLanguage() = English
+20:03:25 PRGILoadLanguageStrings(English)
+20:18:06 PRGILoadLanguageStrings(English)
+20:18:10 PRGIGetApplicationLanguage() = English
+20:19:26 PRGIGetApplicationLanguage() = English
+20:19:33 PRGILoadLanguageStrings(English)
+20:21:28 PRGILoadLanguageStrings(English)
+20:21:52 PRGIGetApplicationLanguage() = English
+20:23:05 PRGILoadLanguageStrings(English)
+20:23:22 PRGIGetApplicationLanguage() = English
+20:25:18 PRGIGetApplicationLanguage() = English
+08:05:25 PRGILoadLanguageStrings(English)
+13:09:23 PRGIGetApplicationLanguage() = English
+17:31:23 PRGILoadLanguageStrings(English)
+17:33:58 PRGIGetApplicationLanguage() = English
+10:32:56 PRGILoadLanguageStrings(English)
+10:40:07 PRGIGetApplicationLanguage() = English
+10:44:38 PRGILoadLanguageStrings(English)
+16:01:07 PRGILoadLanguageStrings(English)
+16:02:13 PRGIGetApplicationLanguage() = English
+16:03:11 PRGIGetApplicationLanguage() = English
+16:03:45 PRGILoadLanguageStrings(English)
+16:04:38 PRGIGetApplicationLanguage() = English
+16:04:54 PRGILoadLanguageStrings(English)
+16:07:42 PRGIGetApplicationLanguage() = English
+16:07:54 PRGILoadLanguageStrings(English)
+16:14:16 PRGIGetApplicationLanguage() = English
+16:14:31 PRGILoadLanguageStrings(English)
+16:15:36 PRGIGetApplicationLanguage() = English
+16:15:45 PRGILoadLanguageStrings(English)
+16:16:43 PRGIGetApplicationLanguage() = English
+16:19:24 PRGILoadLanguageStrings(English)
+16:21:29 PRGIGetApplicationLanguage() = English
+17:09:54 PRGILoadLanguageStrings(English)
+17:17:05 PRGILoadLanguageStrings(English)
+07:32:54 PRGIGetApplicationLanguage() = English
+07:33:06 PRGIGetApplicationLanguage() = English
+07:34:04 PRGILoadLanguageStrings(English)
+07:35:13 PRGIGetApplicationLanguage() = English
+07:35:32 PRGILoadLanguageStrings(English)
+07:44:00 PRGIGetApplicationLanguage() = English
+07:59:12 PRGILoadLanguageStrings(English)
+09:49:17 PRGIGetApplicationLanguage() = English
+10:11:38 PRGILoadLanguageStrings(English)
+10:19:51 PRGIGetApplicationLanguage() = English
+10:33:03 PRGILoadLanguageStrings(English)
+11:32:17 PRGIGetApplicationLanguage() = English
+11:32:27 PRGILoadLanguageStrings(English)
+11:35:40 PRGIGetApplicationLanguage() = English
+11:36:10 PRGILoadLanguageStrings(English)
+11:39:03 PRGIGetApplicationLanguage() = English
+11:40:14 PRGILoadLanguageStrings(English)
+11:59:38 PRGILoadLanguageStrings(English)
+12:19:00 PRGILoadLanguageStrings(English)
+13:01:11 PRGILoadLanguageStrings(English)
+13:40:49 PRGILoadLanguageStrings(English)
+13:41:19 PRGILoadLanguageStrings(English)
+14:11:45 PRGIGetApplicationLanguage() = English
+14:12:02 PRGILoadLanguageStrings(English)
+14:33:47 PRGILoadLanguageStrings(English)
+14:56:17 PRGILoadLanguageStrings(English)
+15:07:23 PRGILoadLanguageStrings(English)
+15:14:10 PRGILoadLanguageStrings(English)
+15:33:39 PRGILoadLanguageStrings(English)
+12:13:41 PRGILoadLanguageStrings(English)
+12:47:24 PRGIGetApplicationLanguage() = English
+14:12:28 PRGILoadLanguageStrings(English)
+14:12:58 PRGIGetApplicationLanguage() = English
+14:12:58 PRGILoadLanguageStrings(English)
+14:13:41 GetFolderPath$(FOLDER_MYDOCS): C:\Users\pe009mo\Documents
+14:13:41 FILEAddBackSlash(GetFolderPath$(FOLDER_MYDOCS)): C:\Users\pe009mo\Documents\
+14:13:52 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:13:53    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+14:13:53 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:13:53    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+14:13:53 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:13:53    as C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:13:53 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:13:54 Testing access to file in Excel
+14:13:54 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:13:54 Saving table Destinationer
+14:13:54    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:13:54 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:13:54 Exporting to CSV file: 25 rows
+14:13:54 Export done
+14:13:54 EXCELDDEOpenChannel to :InputData
+14:13:54 Sending file name to Excel
+14:13:54 Running import macro in Excel
+14:13:54 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:13:54 Deleting CSV file
+14:14:00 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:14:01    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+14:14:01 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:14:01    EXCELDDEOpenChannelNoWait:697: (excellib.mb:361) Program svarer ikke. 
+14:14:01 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:14:01    as C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:14:01 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:14:02 Testing access to file in Excel
+14:14:02 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:14:02 Saving table Destinationer
+14:14:02    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:14:02 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:14:02 Exporting to CSV file: 25 rows
+14:14:02 Export done
+14:14:02 EXCELDDEOpenChannel to :InputData
+14:14:02 Sending file name to Excel
+14:14:02 Running import macro in Excel
+14:14:02 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.13.50.xlsm
+14:14:02 Deleting CSV file
+14:15:57 PRGIGetApplicationLanguage() = English
+14:16:06 PRGILoadLanguageStrings(English)
+14:16:16 EXCELDDEOpenChannelNoWait to :System
+14:16:16    EXCELDDECloseChannel: 335545728
+14:16:16 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.16.15.xlsm
+14:18:56 PRGILoadLanguageStrings(English)
+14:19:03 EXCELDDEOpenChannelNoWait to :System
+14:19:03    EXCELDDECloseChannel: 452986240
+14:19:03 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.19.01.xlsm
+14:22:25 PRGILoadLanguageStrings(English)
+14:22:32 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.22.30.xlsm
+14:29:55 PRGILoadLanguageStrings(English)
+14:30:06 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.30.04.xlsm
+14:30:06    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.30.04.xlsm)
+14:30:06 PRGIGetApplicationLanguage() = English
+14:31:54 PRGILoadLanguageStrings(English)
+14:32:02 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.31.59.xlsm
+14:32:02    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.31.59.xlsm)
+14:33:38 PRGILoadLanguageStrings(English)
+14:33:46 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:33:46    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:33:46    Not able to access the program
+14:33:46 Back from 'EXCELDDEOpenChannelNoWait'
+14:33:46 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:33:46    DDEInitiate('Excel', D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm)
+14:33:46    Not able to access the program
+14:33:46 Back from 'EXCELDDEOpenChannelNoWait'
+14:33:46 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:33:46    as C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:33:46 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:33:47 Testing access to file in Excel
+14:33:47 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:33:47    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:33:47    nChannel=1073743232
+14:33:47 Back from 'EXCELDDEOpenChannelNoWait'
+14:33:47 Saving table Destinationer
+14:33:47    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:33:47 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:33:47 Exporting to CSV file: 25 rows
+14:33:47 Export done
+14:33:47 EXCELDDEOpenChannel to :InputData
+14:33:47 Sending file name to Excel
+14:33:47 Running import macro in Excel
+14:33:47 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:33:47 Deleting CSV file
+14:34:02 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:02    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:02    Not able to access the program
+14:34:02 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:02 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:34:02    DDEInitiate('Excel', D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm)
+14:34:02    Not able to access the program
+14:34:02 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:02 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:34:02    as C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:02 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:03 Testing access to file in Excel
+14:34:03 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:03    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:03    nChannel=1124074880
+14:34:03 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:03 Saving table Destinationer
+14:34:03    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:34:03 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:34:03 Exporting to CSV file: 25 rows
+14:34:03 Export done
+14:34:03 EXCELDDEOpenChannel to :InputData
+14:34:03 Sending file name to Excel
+14:34:03 Running import macro in Excel
+14:34:03 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:03 Deleting CSV file
+14:34:28 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:28    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:28    nChannel=1174406528
+14:34:28 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:30 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:30    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:30    nChannel=1191183744
+14:34:30 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:36 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:36    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:38    Not able to access the program
+14:34:38 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:38 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:34:39    DDEInitiate('Excel', D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm)
+14:34:39    Not able to access the program
+14:34:39 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:39 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:34:39    as C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:39 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:39 Testing access to file in Excel
+14:34:39 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:39    DDEInitiate('Excel', C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm)
+14:34:39    nChannel=1207960960
+14:34:39 Back from 'EXCELDDEOpenChannelNoWait'
+14:34:39 Saving table Destinationer
+14:34:40    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:34:40 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:34:40 Exporting to CSV file: 25 rows
+14:34:40 Export done
+14:34:40 EXCELDDEOpenChannel to :InputData
+14:34:40 Sending file name to Excel
+14:34:40 Running import macro in Excel
+14:34:40 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.33.44.xlsm
+14:34:40 Deleting CSV file
+14:37:39 PRGIGetApplicationLanguage() = English
+14:37:46 PRGILoadLanguageStrings(English)
+14:37:52 EXCELDDEOpenChannelNoWait to :System
+14:37:52 EXCELDDEOpenChannelNoWait to :System
+14:37:52 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:37:52    as C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:37:52 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:37:53 Testing access to file in Excel
+14:37:53 EXCELDDEOpenChannelNoWait to :System
+14:37:53    EXCELDDECloseChannel: 1409287552
+14:37:53 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:37:53    EXCELDDECloseChannel: 1426064768
+14:37:53 Saving table Destinationer
+14:37:53    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:37:53 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:37:53 Exporting to CSV file: 25 rows
+14:37:53 Export done
+14:37:53 EXCELDDEOpenChannel to :InputData
+14:37:53 Sending file name to Excel
+14:37:53    EXCELDDECloseChannel: 1442841984
+14:37:53 Running import macro in Excel
+14:37:53 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:37:53    EXCELDDECloseChannel: 1459619200
+14:37:53 Deleting CSV file
+14:38:02 EXCELDDEOpenChannelNoWait to :System
+14:38:03 EXCELDDEOpenChannelNoWait to :System
+14:38:03 Saving D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+14:38:03    as C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:38:03 Trying to open file: C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:38:04 Testing access to file in Excel
+14:38:04 EXCELDDEOpenChannelNoWait to :System
+14:38:04    EXCELDDECloseChannel: 1476396416
+14:38:04 EXCELDDEOpenChannelNoWait to :C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:38:04    EXCELDDECloseChannel: 1493173632
+14:38:04 Saving table Destinationer
+14:38:04    into C:\Users\pe009mo\AppData\Local\Temp\MIPRO\MapInfo.Application_7932\MapInfo2Excel_Dump.csv
+14:38:04 sCmd: Select Destination "Destination", Adresse "Adresse", FormatNumber$(X) "X", FormatNumber$(Y) "Y", FormatNumber$(MaksimalAfstand) "MaksimalAfstand", Str$(EkstraAfstand) "EkstraAfstand", KortNavn "KortNavn" From Destinationer Into __TO__EXPORT__CSV NoSelect
+14:38:04 Exporting to CSV file: 25 rows
+14:38:04 Export done
+14:38:04 EXCELDDEOpenChannel to :InputData
+14:38:04 Sending file name to Excel
+14:38:04    EXCELDDECloseChannel: 1509950848
+14:38:04 Running import macro in Excel
+14:38:04 EXCELDDEOpenChannel to :C:\Users\pe009mo\Documents\20141210 - 14.37.50.xlsm
+14:38:04    EXCELDDECloseChannel: 1526728064
+14:38:04 Deleting CSV file
+14:38:08 PRGIGetApplicationLanguage() = English
+14:41:57 PRGILoadLanguageStrings(English)
+15:04:10 PRGIGetApplicationLanguage() = English
+11:44:19 PRGILoadLanguageStrings(English)
+11:03:32 PRGILoadLanguageStrings(English)
+12:03:03 PRGIGetApplicationLanguage() = English
+12:50:26 PRGILoadLanguageStrings(English)
+12:53:23 PRGIGetApplicationLanguage() = English
+11:58:23 PRGILoadLanguageStrings(English)
+12:04:43 PRGIGetApplicationLanguage() = English
+08:56:48 PRGILoadLanguageStrings(English)
+08:08:00 PRGIGetApplicationLanguage() = English
+08:17:38 PRGILoadLanguageStrings(English)
+12:21:40 PRGIGetApplicationLanguage() = English
+14:57:59 PRGILoadLanguageStrings(English)
+10:14:39 PRGILoadLanguageStrings(English)
+15:13:49 PRGIGetApplicationLanguage() = English
+16:00:01 PRGIGetApplicationLanguage() = English
+21:27:15 PRGILoadLanguageStrings(English)
+17:36:00 PRGIGetApplicationLanguage() = English
+09:40:14 PRGILoadLanguageStrings(English)
+13:54:43 PRGILoadLanguageStrings(English)
+15:10:03 PRGIGetApplicationLanguage() = English
+15:58:23 PRGIGetApplicationLanguage() = English
+10:57:04 PRGILoadLanguageStrings(English)
+13:20:52 PRGIGetApplicationLanguage() = English
+09:32:35 PRGILoadLanguageStrings(English)
+11:37:13 PRGIGetApplicationLanguage() = English
+10:39:40 PRGILoadLanguageStrings(English)
+10:02:53 PRGIGetApplicationLanguage() = English
+08:01:27 PRGILoadLanguageStrings(English)
+14:34:17 PRGILoadLanguageStrings(English)
+14:50:26 PRGILoadLanguageStrings(English)
+15:13:34 PRGILoadLanguageStrings(English)
+21:32:41 PRGIGetApplicationLanguage() = English
+19:45:12 PRGILoadLanguageStrings(English)
+20:18:49 EXCELDDEOpenChannelNoWait to :System
+20:19:57 EXCELDDEOpenChannelNoWait to :System
+20:19:57    EXCELDDECloseChannel: 33555840
+20:19:57 EXCELDDEOpenChannelNoWait to :D:\Dropbox\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+20:21:07 PRGILoadLanguageStrings(English)
+20:51:01 PRGIGetApplicationLanguage() = English
+07:56:01 PRGILoadLanguageStrings(English)
+16:00:31 PRGIGetApplicationLanguage() = English
+11:17:08 PRGILoadLanguageStrings(English)
+13:25:29 PRGIGetApplicationLanguage() = English

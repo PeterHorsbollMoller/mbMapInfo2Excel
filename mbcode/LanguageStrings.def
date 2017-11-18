@@ -33,3 +33,5 @@ Define	STR_CHECK_EXISTENSE_OF_SHEET			25		'"Make sure your MS Excel template con
 Define	STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP	26		'"Please export a table into MS Excel before exporting a map window!"
 Define	STR_ERR_PLEASE_OPEN_A_MAP			27		'"Please open a Map Window before trying to export it to MS Excel"
 Define	STR_ERR_LATEST_XLS_FILE_NOT_OPEN		28		'"The latest used MS Excel file is no longer open."
+
+Define	STR_WAIT_TIME_SECS					29		'"Wait time, secs."

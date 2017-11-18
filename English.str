@@ -36,3 +36,5 @@ LANGUAGE=English
 26="Please export a table into MS Excel before exporting a map window!"
 27="Please open a Map Window before trying to export it to MS Excel"
 28="The latest used MS Excel file is no longer open."
+
+29="Wait time, secs"

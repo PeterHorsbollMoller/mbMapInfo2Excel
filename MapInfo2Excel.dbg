@@ -1,0 +1,26 @@
+15:46:44 EXCELIsRunning: FALSE
+15:46:44 Saving D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+15:46:44    as D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171117 - 15.46.35.xlsm
+15:46:44 Trying to open file: D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171117 - 15.46.35.xlsm
+15:46:45 Waiting 0,5 secs
+15:46:46 Testing access to file in Excel
+15:46:46 EXCELDDEOpenChannelNoWait to :System
+15:46:46 EXCELIsRunning: TRUE
+15:46:46    EXCELDDECloseChannel: 805307776
+15:46:46 EXCELDDEOpenChannelNoWait to :D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171117 - 15.46.35.xlsm
+15:46:46 EXCELIsFileOpen: TRUE
+15:46:46    EXCELDDECloseChannel: 822084992
+15:46:46 Saving table Selection
+15:46:46    into C:\Users\PE009MO\AppData\Local\Temp\1\MIPRO\MapInfo.Application_31812\MapInfo2Excel_Dump.csv
+15:46:46 sCmd: Select NAME "NAME", ADDRESS "ADDRESS", POSTALNO "POSTALNO", CITYNAME "CITYNAME", COUNTRYCODE "COUNTRYCODE", COUNTRYNAME "COUNTRYNAME", COMMENTS "COMMENTS", FULL_ADDRESS "FULL_ADDRESS" From Selection Into __TO__EXPORT__CSV NoSelect
+15:46:46 Exporting to CSV file: 3 rows
+15:46:46 Export done
+15:46:46 EXCELDDEOpenChannel to :InputData
+15:46:46 Sending file name to Excel
+15:46:46    EXCELDDECloseChannel: 838862208
+15:46:46 Running import macro in Excel
+15:46:46 EXCELDDEOpenChannel to :D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171117 - 15.46.35.xlsm
+15:46:46    EXCELDDECloseChannel: 855639424
+15:46:46 Deleting CSV file
+15:48:01 PRGIGetApplicationLanguage() = English
+15:48:40 PRGILoadLanguageStrings(English)

@@ -36,3 +36,5 @@ LANGUAGE=Dansk
 26="Du skal først eksportere data til MS Excel før du kan eksportere et kort!"
 27="Åbn først et kort før du forsøger at overføre det til MS Excel"
 28="Den sidst anvendte MS Excel fil er ikke længere åben."
+
+29="Ventetid, sek"

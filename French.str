@@ -36,3 +36,5 @@ LANGUAGE=Français
 26="Exporter une table vers MS Excel avant d'exporter une fenêtre carte!"
 27="Ouvrir une fenêtre carte avant de l'exporter vers MS Excel"
 28="Le dernier fichier MS Excel utilisé n'est plus ouvert."
+
+29="Attendez, sec"
