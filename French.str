@@ -38,3 +38,5 @@ LANGUAGE=Français
 28="Le dernier fichier MS Excel utilisé n'est plus ouvert."
 
 29="Attendez, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."

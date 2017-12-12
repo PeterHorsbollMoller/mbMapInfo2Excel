@@ -36,3 +36,7 @@ LANGUAGE=Swedish
 26="Du behöver först exportera en tabell till MS Excel innan du kan exportera ett kartfönster!"
 27="Ett kartfönster behöver vara öppet innan du kan exportera det till MS Excel"
 28="Den fil som senast användes i MS Excel är inte längre öppen."
+
+29="Väntatid, secs"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."

@@ -38,3 +38,5 @@ LANGUAGE=Nederlands
 28="Het laatstgebruikte MS Excel bestand is niet meer geopend."
 
 29="Wacht tijd, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."

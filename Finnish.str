@@ -38,3 +38,5 @@ LANGUAGE=Finnish
 28="Viimeksi k‰ytetty MS Excel-tiedosto ei ole en‰‰ auki."
 
 29="Odotusaika, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."

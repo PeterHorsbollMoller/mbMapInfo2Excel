@@ -36,3 +36,7 @@ LANGUAGE=Spanish
 26="Por favor, exporte una tabla a MS Excel antes de exportar la ventana de mapa!"
 27="Por favor, abra una Ventana de Mapa antes de intentar exportarla a MS Excel"
 28="El último fichero MS Excel utilizado ya no está abierto."
+
+29="Tiempo de espera, secs"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."

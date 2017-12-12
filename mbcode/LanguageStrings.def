@@ -35,3 +35,5 @@ Define	STR_ERR_PLEASE_OPEN_A_MAP			27		'"Please open a Map Window before trying 
 Define	STR_ERR_LATEST_XLS_FILE_NOT_OPEN		28		'"The latest used MS Excel file is no longer open."
 
 Define	STR_WAIT_TIME_SECS					29		'"Wait time, secs."
+Define	STR_ERR_WRONG_FILE_EXTENSION			30 		'"Output file not valid. Please ensure file has extension "
+Define	STR_ERR_OUTPUT_FOLDER_NOT_FOUND		31 		'"Output folder does not exist. Please check."

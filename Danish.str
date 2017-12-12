@@ -38,3 +38,5 @@ LANGUAGE=Dansk
 28="Den sidst anvendte MS Excel fil er ikke længere åben."
 
 29="Ventetid, sek"
+30="Output-fil er ikke gyldig. Sikre dig at filen har filtypen "
+31="Output-mappe findes ikke. Kontroller venligst."
