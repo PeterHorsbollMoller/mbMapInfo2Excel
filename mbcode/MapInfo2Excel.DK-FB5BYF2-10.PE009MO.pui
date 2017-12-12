@@ -1,12 +1,12 @@
 [Open Files]
 Active File Display Mode=1
 Active File Index=0
-Open File Line0=12531
+Open File Line0=0
 Open File Line1=0
 Open File Pos0=13345
-Open File Pos1=2333
-Open File Window Pos0=0,1,-1,-1,-1,-1,3,31,2742,1224
-Open File Window Pos1=0,1,-1,-1,-1,-1,3,31,2742,1224
+Open File Pos1=2326
+Open File Window Pos0=0,1,-1,-1,-1,-1,3,31,1968,1224
+Open File Window Pos1=0,1,-1,-1,-1,-1,3,31,1968,1224
 Open File0=D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel\mbcode\MI2ExcelMENU.mb
 Open File1=D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel\mbcode\LanguageStrings.def
 Open File2=
@@ -15,3 +15,4 @@ Remember Files=1
 [Project Information]
 	Project Start=E107040001000A0008000F000D0000001B
 	Working Time=253066
+

@@ -25,3 +25,31 @@
 15:48:01 PRGIGetApplicationLanguage() = English
 15:48:40 PRGILoadLanguageStrings(English)
 12:41:54 PRGIGetApplicationLanguage() = English
+13:46:09 PRGILoadLanguageStrings(English)
+13:47:16 EXCELDDEOpenChannelNoWait to :System
+13:47:16 EXCELIsRunning: FALSE
+13:47:16 EXCELDDEOpenChannelNoWait to :System
+13:47:16 EXCELIsRunning: FALSE
+13:47:16 Saving D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel\Template.xlsm
+13:47:16    as D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171212 - 13.46.31.xlsm
+13:47:16 Trying to open file: D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171212 - 13.46.31.xlsm
+13:47:18 Waiting 0,5 secs
+13:47:18 Testing access to file in Excel
+13:47:18 EXCELDDEOpenChannelNoWait to :System
+13:47:18 EXCELIsRunning: TRUE
+13:47:18    EXCELDDECloseChannel: 33555840
+13:47:18 EXCELDDEOpenChannelNoWait to :D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171212 - 13.46.31.xlsm
+13:47:18 EXCELIsFileOpen: TRUE
+13:47:18    EXCELDDECloseChannel: 50333056
+13:47:18 Saving table Selection
+13:47:18    into C:\Users\PE009MO\AppData\Local\Temp\1\MIPRO\MapInfo.Application_16312\MapInfo2Excel_Dump.csv
+13:47:19 sCmd: Select SOGENOGLE "SOGENOGLE", DSFL "DSFL", KORTNAVN "KORTNAVN", LANGTNAVN "LANGTNAVN", REVUID "REVUID", REVDATE "REVDATE", KOMMUNENR "KOMMUNENR", Str$(VEJ_KODE) "VEJ_KODE", VEJNAVN "VEJNAVN", Str$(HUS_NR) "HUS_NR", HUSBOGSTAV "HUSBOGSTAV", SYNLIGHED "SYNLIGHED", TYPE "TYPE", NKLASSE "NKLASSE", KBEREGN "KBEREGN", TSTAND "TSTAND", FormatNumber$(X_koor) "X_koor", FormatNumber$(Y_koor) "Y_koor", FormatNumber$(RETN) "RETN", Str$(PLAC) "PLAC", Str$(KILDE) "KILDE", Str$(SOGNENR) "SOGNENR", Str$(POSTNR) "POSTNR", POSTDIST "POSTDIST", ASTATUS "ASTATUS", SAGDATO "SAGDATO", Str$(SAGFLAG) "SAGFLAG", Str$(RAPSTATUS) "RAPSTATUS", ADR_ID "ADR_ID", OPRETTET_AF "OPRETTET_AF", FormatDate$(OPRETTET_DEN) + " " + FormatTime$(OPRETTET_DEN, "HH:mm:ss") "OPRETTET_DEN", RETTET_AF "RETTET_AF", FormatDate$(RETTET_DEN) + " " + FormatTime$(RETTET_DEN, "HH:mm:ss") "RETTET_DEN" From Selection Into __TO__EXPORT__CSV NoSelect
+13:47:19 Exporting to CSV file: 257 rows
+13:47:19 Export done
+13:47:19 EXCELDDEOpenChannel to :InputData
+13:47:19 Sending file name to Excel
+13:47:19    EXCELDDECloseChannel: 67110272
+13:47:19 Running import macro in Excel
+13:47:19 EXCELDDEOpenChannel to :D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171212 - 13.46.31.xlsm
+13:47:19    EXCELDDECloseChannel: 83887488
+13:47:19 Deleting CSV file
