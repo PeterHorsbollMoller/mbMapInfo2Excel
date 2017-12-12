@@ -14,7 +14,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"1.8.2"
+Define xVersion 		"1.8.3"
 Define xYear			"2017"
 Define xAddToMenuBar	FALSE
 
@@ -417,6 +417,19 @@ OnError GoTo ErrorOccured
 	sTab			= marrTables(ReadControlValue(CTRL_LST_TABLES))
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
 
+	' check selected output files is valid
+	If not Right$(sNewFile,5)= Right$(MENUGetExcelTemplateFile(),5) then
+		Note RESSTRNGGetString(STR_ERR_WRONG_FILE_EXTENSION) & "'" & Right$(MENUGetExcelTemplateFile(),5) & "'"
+		Exit Sub
+	End If
+
+	' check selected output folder exists
+	If not FileExists(PathToDirectory$(sNewFile)) then
+		Note RESSTRNGGetString(STR_ERR_OUTPUT_FOLDER_NOT_FOUND)
+		Exit Sub
+	End If
+
+
 	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
 	Call MENUExportTableViaCSV(sTab, mbExportTitles, sNewFile)
@@ -511,6 +524,18 @@ OnError GoTo ErrorOccured
 
 	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	' check selected output files is valid
+	If not Right$(sNewFile,5)= Right$(MENUGetExcelTemplateFile(),5) then
+		Note RESSTRNGGetString(STR_ERR_WRONG_FILE_EXTENSION) & "'" & Right$(MENUGetExcelTemplateFile(),5) & "'"
+		Exit Sub
+	End If
+
+	' check selected output folder exists
+	If not FileExists(PathToDirectory$(sNewFile)) then
+		Note RESSTRNGGetString(STR_ERR_OUTPUT_FOLDER_NOT_FOUND)
+		Exit Sub
+	End If
 
 	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
