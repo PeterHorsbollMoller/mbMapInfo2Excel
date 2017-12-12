@@ -53,3 +53,5 @@
 13:47:19 EXCELDDEOpenChannel to :D:\Dropbox (Horsboll-Moller)\1. Dokumenter\20171212 - 13.46.31.xlsm
 13:47:19    EXCELDDECloseChannel: 83887488
 13:47:19 Deleting CSV file
+15:51:45 PRGIGetApplicationLanguage() = English
+15:52:14 PRGILoadLanguageStrings(English)
